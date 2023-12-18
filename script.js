@@ -6,6 +6,6 @@ async function loadPokemon() {
     let response = await fetch(url);
     currentPokemon = response.json();
 
-    console.log('loaded Pokemon, 'currentPokemon);
+    console.log('loaded Pokemon', currentPokemon);
 
 }
