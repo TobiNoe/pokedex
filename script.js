@@ -41,7 +41,7 @@ function renderPokemonInfo() {
 
 function renderPokemonOverviewCard(pokemonName, imgURL) {
     document.getElementById('pokemon_overview').innerHTML += /*html*/`
-        <div class="col">
+        <div class="col mb-4">
             <div class="card bg-primary" style="width: 18rem;">
                 <img src="${imgURL}" class="card-img-top" alt="...">
                 <div class="card-body">
