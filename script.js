@@ -42,7 +42,7 @@ function renderPokemonInfo() {
 function renderPokemonOverviewCard(pokemonName, imgURL) {
     document.getElementById('pokemon_overview').innerHTML += /*html*/`
         <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-flex justify-content-center justify-content-sm-between  mb-4">
-            <div class="card" style="max-width: 21rem;"> <!--  style="width: 16rem;"-->
+            <div class="card" style="max-width: 21rem;">
             <div class="card-body d-flex justify-content-between align-items-center">
                     <h3 class="card-title">${pokemonName}</h5>
                     <h4 class="card-subtitle mb-2 text-body-secondary">#1</h6>
