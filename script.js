@@ -8,12 +8,14 @@ function init() {
 }
 
 
-async function loadPokemon(pokemonName) {
+async function loadPokemon(pokemonName, i) {
     let url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
     let response = await fetch(url);
     currentPokemon = await response.json();
+    let pokemonID = Number(i);
+    pokemonID++;
 
-    renderPokemonOverviewCard(currentPokemon['species']['name'], currentPokemon['sprites']['other']['home']['front_default']);
+    renderPokemonOverviewCard(currentPokemon['species']['name'], currentPokemon['sprites']['other']['home']['front_default'], pokemonID);
 
     /* console.log('loaded Pokemon', currentPokemon['sprites']['other']['home']['front_default']); */
 }
@@ -27,7 +29,7 @@ async function loadPokemonList() {
 
     for (let i = 0; i < pokemonList['results'].length; i++) {
         const pokemonName = pokemonList['results'][i]['name'];
-        await loadPokemon(pokemonName);
+        await loadPokemon(pokemonName, i);
 
         /* console.log(pokemonName); */
     }
@@ -39,15 +41,15 @@ function renderPokemonInfo() {
 }
 
 
-function renderPokemonOverviewCard(pokemonName, imgURL) {
+function renderPokemonOverviewCard(pokemonName, imgURL, pokemonID) {
     document.getElementById('pokemon_overview').innerHTML += /*html*/`
         <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-flex justify-content-center justify-content-sm-between  mb-4">
             <div class="card" style="max-width: 21rem;">
             <div class="card-body d-flex justify-content-between align-items-center">
                     <h3 class="card-title">${pokemonName}</h5>
-                    <h4 class="card-subtitle mb-2 text-body-secondary">#1</h6>
+                    <h4 class="card-subtitle mb-2 text-body-secondary">${pokemonID}</h6>
             </div>    
-            <img src="${imgURL}" class="card-img-top" alt="...">
+            <img src="${imgURL}" class="card-img-top" alt="Bild_${pokemonName}">
                 <div class="card-body d-flex justify-content-center align-items-center">
                     <a href="#" class="btn btn-primary">Detail Informationen</a>
                 </div>
