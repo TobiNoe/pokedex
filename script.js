@@ -14,7 +14,7 @@ async function loadPokemon(pokemonName) {
     currentPokemon = await response.json();
 
     renderPokemonOverviewCard(currentPokemon['species']['name'], currentPokemon['sprites']['other']['home']['front_default']);
-    
+
     /* console.log('loaded Pokemon', currentPokemon['sprites']['other']['home']['front_default']); */
 }
 
@@ -28,7 +28,7 @@ async function loadPokemonList() {
     for (let i = 0; i < pokemonList['results'].length; i++) {
         const pokemonName = pokemonList['results'][i]['name'];
         await loadPokemon(pokemonName);
-        
+
         /* console.log(pokemonName); */
     }
 }
@@ -42,11 +42,13 @@ function renderPokemonInfo() {
 function renderPokemonOverviewCard(pokemonName, imgURL) {
     document.getElementById('pokemon_overview').innerHTML += /*html*/`
         <div class="col mb-4">
-            <div class="card bg-primary" style="width: 18rem;">
-                <img src="${imgURL}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h1>${pokemonName}</h1>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="card" style="width: 16rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                    <h3 class="card-title">${pokemonName}</h5>
+                    <h4 class="card-subtitle mb-2 text-body-secondary">#1</h6>
+            </div>    
+            <img src="${imgURL}" class="card-img-top" alt="...">
+                <div class="card-body d-flex justify-content-center align-items-center">
                     <a href="#" class="btn btn-primary">Detail Informationen</a>
                 </div>
             </div>
