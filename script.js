@@ -8,16 +8,12 @@ function init() {
 }
 
 
-async function loadPokemon(pokemonName, i) {
-    let url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
+async function loadPokemon(pokemonID) {
+    /* let pokemonID = Number(id);
+    pokemonID++; */
+    let url = `https://pokeapi.co/api/v2/pokemon/${pokemonID}`;
     let response = await fetch(url);
     currentPokemon = await response.json();
-    let pokemonID = Number(i);
-    pokemonID++;
-
-    renderPokemonOverviewCard(currentPokemon['species']['name'], currentPokemon['sprites']['other']['home']['front_default'], pokemonID);
-
-    /* console.log('loaded Pokemon', currentPokemon['sprites']['other']['home']['front_default']); */
 }
 
 
@@ -28,11 +24,17 @@ async function loadPokemonList() {
     /* console.log('loaded PokemonList', pokemonList); */
 
     for (let i = 0; i < pokemonList['results'].length; i++) {
-        const pokemonName = pokemonList['results'][i]['name'];
-        await loadPokemon(pokemonName, i);
-
-        /* console.log(pokemonName); */
+        /* const pokemonName = pokemonList['results'][i]['name']; */
+        const pokemonID = i + 1;
+        await loadPokemon(pokemonID);
+        renderPokemonOverviewCard(currentPokemon['species']['name'], currentPokemon['sprites']['other']['home']['front_default'], pokemonID);
     }
+}
+
+
+async function showPokemonDetail(pokemonID) {
+    await loadPokemon(pokemonID);
+    renderPokemonInfo();
 }
 
 
@@ -51,8 +53,14 @@ function renderPokemonOverviewCard(pokemonName, imgURL, pokemonID) {
             </div>    
             <img src="${imgURL}" class="card-img-top" alt="Bild_${pokemonName}">
                 <div class="card-body d-flex justify-content-center align-items-center">
-                    <a href="#" class="btn btn-primary">Detail Informationen</a>
+                    <a href="#" class="btn btn-primary" onclick="showPokemonDetail(${pokemonID})">Show Pokemon</a>
                 </div>
             </div>
         </div>`
 }
+
+
+/* async function showPokemonDetail(pokemonName, pokemonID) {
+    await loadPokemon(pokemonName, pokemonID);
+    renderPokemonInfo();
+} */
