@@ -1,3 +1,8 @@
 .mt-n {
     margin-top: -15px;
 }
+
+.img-detail {
+    height: 280px;
+    object-fit: cover;
+}
