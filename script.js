@@ -40,11 +40,38 @@ async function showPokemonDetail(pokemonID) {
 
 function renderPokemonInfo() {
     document.getElementById('pokemon_detail').innerHTML = renderPokemonInfoHTML();
+    renderPokemonAbout();
 }
 
 
 function renderPokemonOverviewCard(pokemonName, imgURL, pokemonID) {
     document.getElementById('pokemon_overview').innerHTML += renderPokemonOverviewCardHTML(pokemonName, imgURL, pokemonID);
+}
+
+
+function renderPokemonAbout() {
+    document.getElementById('pokemon_selected_infos').innerHTML = /* html */`
+        <div class="w-40">
+            <p class="">Species</p>
+            <p class="">Height</p>       
+            <p class="">Weight</p>       
+            <p class="">Abilities</p>
+            <h5 class="mb-4">Breeding</h5>
+            <p class="">Gender</p>       
+            <p class="">Egg Groups</p>   
+            <p class="">Egg Cycle</p>
+        </div>
+        <div class="w-60">
+            <p><b>API Wert ?</b></p>
+            <p><b>${currentPokemon['height']}</b></p>
+            <p><b>${currentPokemon['weight']}</b></p>
+            <p><b>${currentPokemon['abilities'][0]['ability']['name']}</b></p>
+            <h5 class="mb-4" style="color: white;">Breeding</h5>
+            <p><b>API Wert ?</b></p>
+            <p><b>API Wert aus species/PokemonID</b></p>
+            <p><b>API Wert ?</b></p>
+        </div>
+    `;
 }
 
 
@@ -56,7 +83,17 @@ function renderPokemonBaseStats() {
 }
 
 
-/* async function showPokemonDetail(pokemonName, pokemonID) {
-    await loadPokemon(pokemonName, pokemonID);
-    renderPokemonInfo();
-} */
+function renderPokemonEvolution() {
+    document.getElementById('pokemon_selected_infos').innerHTML = /* html */`
+    <div class="w-40">test</div>
+    <div class="w-60">test</div>
+    `;
+}
+
+
+function renderPokemonMoves() {
+    document.getElementById('pokemon_selected_infos').innerHTML = /* html */`
+    <div class="w-40">test</div>
+    <div class="w-60">test</div>
+    `;
+}
