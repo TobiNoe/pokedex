@@ -27,7 +27,8 @@ async function loadPokemonList() {
         /* const pokemonName = pokemonList['results'][i]['name']; */
         const pokemonID = i + 1;
         await loadPokemon(pokemonID);
-        renderPokemonOverviewCard(currentPokemon['species']['name'], currentPokemon['sprites']['other']['home']['front_default'], pokemonID);
+        let color = getColor(currentPokemon['types'][0]['type']['name']);
+        renderPokemonOverviewCard(currentPokemon['species']['name'], currentPokemon['sprites']['other']['home']['front_default'], pokemonID, color);
     }
 }
 
@@ -46,8 +47,8 @@ function renderPokemonInfo() {
 }
 
 
-function renderPokemonOverviewCard(pokemonName, imgURL, pokemonID) {
-    document.getElementById('pokemon_overview').innerHTML += renderPokemonOverviewCardHTML(pokemonName, imgURL, pokemonID);
+function renderPokemonOverviewCard(pokemonName, imgURL, pokemonID, color) {
+    document.getElementById('pokemon_overview').innerHTML += renderPokemonOverviewCardHTML(pokemonName, imgURL, pokemonID, color);
 }
 
 
