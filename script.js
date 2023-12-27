@@ -18,7 +18,7 @@ async function loadPokemon(pokemonID) {
 
 
 async function loadPokemonList() {
-    let url = 'https://pokeapi.co/api/v2/pokemon?limit=4&offset=0.'; //limit from 10000 to 4 sets!!!
+    let url = 'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0.'; //limit from 10000 to 20 sets!!!
     let response2 = await fetch(url);
     pokemonList = await response2.json();
     /* console.log('loaded PokemonList', pokemonList); */
@@ -35,6 +35,7 @@ async function loadPokemonList() {
 async function showPokemonDetail(pokemonID) {
     await loadPokemon(pokemonID);
     renderPokemonInfo();
+    toggleVisibility();
 }
 
 
@@ -96,4 +97,8 @@ function renderPokemonMoves() {
     <div class="w-40">test</div>
     <div class="w-60">test</div>
     `;
+}
+
+function toggleVisibility() {
+    document.getElementById('show_pokemon_detail').classList.toggle('invisible');
 }

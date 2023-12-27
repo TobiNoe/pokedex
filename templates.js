@@ -1,8 +1,13 @@
 function renderPokemonInfoHTML() {
     return /* html */`
-    <div class="card-body border-top rounded-top-4" style="background-color: rgb(83, 245, 191); color: white; height: 300px;">
+    <div class="card-body d-flex justify-content-between border-top rounded-top-4" style="background-color: rgb(83, 245, 191); color: white; height: 300px;">
+        <div>
         <h3 class="text-capitalize">${currentPokemon['name']}</h3>
         <p class="card-text text-capitalize">${currentPokemon['types'][0]['type']['name']}</p>
+        </div>
+        <div>
+            <p class="pointer" onclick="toggleVisibility()">close</p>
+        </div>
      </div>
      <div class="position-fixed w-100 d-flex justify-content-center" style="top: 48px;"><!-- style="background-color: rgb(83, 245, 191);" -->
         <img src="${currentPokemon['sprites']['other']['home']['front_default']}" class="img-detail" alt="..."><!-- card-img-top -->
@@ -11,17 +16,17 @@ function renderPokemonInfoHTML() {
         <div class="ms-4 me-4"  style="margin-top: 32px;">
             <ul class="nav nav-underline justify-content-between mb-4">
                 <li class="nav-item">
-                <a class="nav-link text-dark active" href="#" onclick="renderPokemonAbout()">About</a>
+                <a class="nav-link text-dark active" onclick="renderPokemonAbout()">About</a>
                 <!-- class="active border-primary " aria-current="page" -->
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark" href="#" onclick="renderPokemonBaseStats()">Base Stats</a>
+                <a class="nav-link text-dark" onclick="renderPokemonBaseStats()">Base Stats</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark" href="#" onclick="renderPokemonEvolution()">Evolution</a>
+                <a class="nav-link text-dark" onclick="renderPokemonEvolution()">Evolution</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark" href="#" onclick="renderPokemonMoves()">Moves</a>
+                <a class="nav-link text-dark" onclick="renderPokemonMoves()">Moves</a>
                 </li>
             </ul>
             <div id="pokemon_selected_infos" class="d-flex"></div>
@@ -41,7 +46,7 @@ function renderPokemonOverviewCardHTML(pokemonName, imgURL, pokemonID) {
             </div>    
             <img src="${imgURL}" class="card-img-top" alt="Bild_${pokemonName}">
                 <div class="card-body d-flex justify-content-center align-items-center">
-                    <a href="#" class="btn btn-primary" onclick="showPokemonDetail(${pokemonID})">Show Pokemon</a>
+                    <a class="btn btn-primary" onclick="showPokemonDetail(${pokemonID})">Show Pokemon</a><!-- href="#" -->
                 </div>
             </div>
         </div>`
