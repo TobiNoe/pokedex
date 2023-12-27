@@ -15,7 +15,7 @@ function renderPokemonInfoHTML() {
                 <!-- class="active border-primary " aria-current="page" -->
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark" href="#">Base Stats</a>
+                <a class="nav-link text-dark" href="#" onclick="renderPokemonBaseStats()">Base Stats</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link text-dark" href="#">Evolution</a>
@@ -24,34 +24,36 @@ function renderPokemonInfoHTML() {
                 <a class="nav-link text-dark" href="#">Moves</a><!-- aria-disabled="true" -->
                 </li>
             </ul>
-            <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6">
-                <p class="">Species</p>
-                <p><b>API Wert ?</b></p>
-            </div>
-            <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6">
-                <p class="">Height</p>
-                <p><b>${currentPokemon['height']}</b></p>
-            </div>
-            <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6">
-                <p class="">Weight</p>
-                <p><b>${currentPokemon['weight']}</b></p>
-            </div>
-            <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6 mb-2">
-                <p class="">Abilities</p>
-                <p><b>${currentPokemon['abilities'][0]['ability']['name']}</b></p>
-            </div>
-            <h5 class="mb-4">Breeding</h3>
-            <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6">
-                <p class="">Gender</p>
-                <p><b>API Wert ?</b></p>
-            </div>
-            <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6">
-                <p class="">Egg Groups</p>
-                <p><b>API Wert aus species/PokemonID</b></p>
-            </div>
-            <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6">
-                <p class="">Egg Cycle</p>
-                <p><b>API Wert ?</b></p>
+            <div id="pokemon_selected_infos">
+                <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6">
+                    <p class="">Species</p>
+                    <p><b>API Wert ?</b></p>
+                </div>
+                <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6">
+                    <p class="">Height</p>
+                    <p><b>${currentPokemon['height']}</b></p>
+                </div>
+                <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6">
+                    <p class="">Weight</p>
+                    <p><b>${currentPokemon['weight']}</b></p>
+                </div>
+                <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6 mb-2">
+                    <p class="">Abilities</p>
+                    <p><b>${currentPokemon['abilities'][0]['ability']['name']}</b></p>
+                </div>
+                <h5 class="mb-4">Breeding</h3>
+                <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6">
+                    <p class="">Gender</p>
+                    <p><b>API Wert ?</b></p>
+                </div>
+                <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6">
+                    <p class="">Egg Groups</p>
+                    <p><b>API Wert aus species/PokemonID</b></p>
+                </div>
+                <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6">
+                    <p class="">Egg Cycle</p>
+                    <p><b>API Wert ?</b></p>
+                </div>
             </div>
         </div>
     </div>

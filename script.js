@@ -48,6 +48,15 @@ function renderPokemonOverviewCard(pokemonName, imgURL, pokemonID) {
 }
 
 
+function renderPokemonBaseStats() {
+    debugger;
+    document.getElementById('pokemon_selected_infos').innerHTML = /* html */`
+    <div class="w-30">test</div>
+    <div class="w-70">test</div>
+    `;
+}
+
+
 /* async function showPokemonDetail(pokemonName, pokemonID) {
     await loadPokemon(pokemonName, pokemonID);
     renderPokemonInfo();
