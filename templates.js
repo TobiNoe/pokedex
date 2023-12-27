@@ -1,6 +1,6 @@
-function renderPokemonInfoHTML() {
+function renderPokemonInfoHTML(color) {
     return /* html */`
-    <div class="card-body d-flex justify-content-between border-top rounded-top-4" style="background-color: rgb(83, 245, 191); color: white; height: 300px;">
+    <div class="card-body d-flex justify-content-between border-top rounded-top-4" style="background-color: ${color}; color: white; height: 300px;">
         <div>
         <h3 class="text-capitalize">${currentPokemon['name']}</h3>
         <p class="card-text text-capitalize">${currentPokemon['types'][0]['type']['name']}</p>

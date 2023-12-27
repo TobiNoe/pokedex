@@ -40,7 +40,8 @@ async function showPokemonDetail(pokemonID) {
 
 
 function renderPokemonInfo() {
-    document.getElementById('pokemon_detail').innerHTML = renderPokemonInfoHTML();
+    let color = getColor(currentPokemon['types'][0]['type']['name']);
+    document.getElementById('pokemon_detail').innerHTML = renderPokemonInfoHTML(color);
     renderPokemonAbout();
 }
 
@@ -106,4 +107,9 @@ function toggleVisibility() {
 
 function doNotToggleVisibility(event) {
     event.stopPropagation();
+}
+
+
+function getColor(typeOfPokemon) {
+    return colours[typeOfPokemon];
 }
