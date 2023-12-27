@@ -44,7 +44,7 @@ function renderPokemonOverviewCardHTML(pokemonName, imgURL, pokemonID) {
                     <h3 class="card-title text-capitalize">${pokemonName}</h5>
                     <h4 class="card-subtitle mb-2 text-body-secondary">${pokemonID}</h6>
             </div>    
-            <img src="${imgURL}" class="card-img-top" alt="Bild_${pokemonName}">
+            <img src="${imgURL}" class="img-card" alt="Bild_${pokemonName}"><!-- card-img-top -->
                 <div class="card-body d-flex justify-content-center align-items-center">
                     <a class="btn btn-primary" onclick="showPokemonDetail(${pokemonID})">Show Pokemon</a><!-- href="#" -->
                 </div>

@@ -7,6 +7,11 @@
     object-fit: cover;
 }
 
+.img-card {
+    height: 200px;
+    object-fit: contain;
+}
+
 .w-40 {
     width: 40%;
 }
