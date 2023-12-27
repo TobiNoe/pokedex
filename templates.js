@@ -24,8 +24,28 @@ function renderPokemonInfoHTML() {
                 <a class="nav-link text-dark" href="#">Moves</a><!-- aria-disabled="true" -->
                 </li>
             </ul>
-            <div id="pokemon_selected_infos">
-                <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6">
+            <div id="pokemon_selected_infos" class="d-flex">
+                <div class="w-40">
+                    <p class="">Species</p>
+                    <p class="">Height</p>       
+                    <p class="">Weight</p>       
+                    <p class="">Abilities</p>
+                    <h5 class="mb-4">Breeding</h5>
+                    <p class="">Gender</p>       
+                    <p class="">Egg Groups</p>   
+                    <p class="">Egg Cycle</p>
+                </div>
+                <div class="w-60">
+                    <p><b>API Wert ?</b></p>
+                    <p><b>${currentPokemon['height']}</b></p>
+                    <p><b>${currentPokemon['weight']}</b></p>
+                    <p><b>${currentPokemon['abilities'][0]['ability']['name']}</b></p>
+                    <h5 class="mb-4" style="color: white;">Breeding</h5>
+                    <p><b>API Wert ?</b></p>
+                    <p><b>API Wert aus species/PokemonID</b></p>
+                    <p><b>API Wert ?</b></p>
+                </div>
+                <!-- <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6">
                     <p class="">Species</p>
                     <p><b>API Wert ?</b></p>
                 </div>
@@ -53,7 +73,7 @@ function renderPokemonInfoHTML() {
                 <div class="d-flex align-items-center justify-content-between col-12 col-sm-6 col-md-12 col-lg-6">
                     <p class="">Egg Cycle</p>
                     <p><b>API Wert ?</b></p>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
