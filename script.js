@@ -102,3 +102,8 @@ function renderPokemonMoves() {
 function toggleVisibility() {
     document.getElementById('show_pokemon_detail').classList.toggle('invisible');
 }
+
+
+function doNotToggleVisibility(event) {
+    event.stopPropagation();
+}
