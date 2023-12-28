@@ -27,10 +27,8 @@ async function loadPokemonList() {
     let url = 'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0.'; //limit from 10000 to 20 sets!!!
     let response2 = await fetch(url);
     pokemonList = await response2.json();
-    /* console.log('loaded PokemonList', pokemonList); */
 
     for (let i = 0; i < pokemonList['results'].length; i++) {
-        /* const pokemonName = pokemonList['results'][i]['name']; */
         const pokemonID = i + 1;
         await loadPokemon(pokemonID);
         let color = getColor(currentPokemon['types'][0]['type']['name']);
@@ -74,7 +72,7 @@ function renderPokemonAbilities() {
 
     for (let i = 0; i < currentPokemon['abilities'].length; i++) {
         const ability = currentPokemon['abilities'][i]['ability']['name'];
-        abilitiyID.innerHTML += /* html */`${ability} `
+        abilitiyID.innerHTML += /* html */`${ability} / `
     }
 }
 

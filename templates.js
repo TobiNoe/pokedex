@@ -29,7 +29,7 @@ function renderPokemonInfoHTML(color) {
                 <a class="nav-link text-dark pointer" onclick="renderPokemonMoves()">Moves</a>
                 </li>
             </ul>
-            <div id="pokemon_selected_infos" class="d-flex align-items-center" style="height: 350px;"></div><!--  style="height: 400px;" -->
+            <div id="pokemon_selected_infos" class="d-flex align-items-center" style="height: 300px;"></div><!--  style="height: 400px;" -->
         </div>
     </div>
   `
@@ -51,7 +51,7 @@ function renderPokemonAboutHTML() {
             <p><b>${currentPokemon['height']}</b></p>
             <p><b>${currentPokemon['weight']}</b></p>
             <p class="text-capitalize"><b id="pokemon_selected_abilities"></b></p>
-            <p><b>${currentSpecies['egg_groups'][0]['name']}</b></p>
+            <p class="text-capitalize"><b>${currentSpecies['egg_groups'][0]['name']}</b></p>
             
         </div>
     `;
