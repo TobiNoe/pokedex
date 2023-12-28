@@ -77,6 +77,10 @@ function renderPokemonAbilities() {
 }
 
 
+function renderPokemonMoves() {
+}
+
+
 /* function renderPokemonBaseStats() {
     document.getElementById('pokemon_selected_infos').innerHTML = renderPokemonStatsHTML();
 } */
@@ -92,9 +96,18 @@ function renderPokemonEvolution() {
 
 function renderPokemonMoves() {
     document.getElementById('pokemon_selected_infos').innerHTML = /* html */`
-    <div class="w-40">test</div>
-    <div class="w-60">test</div>
+    <div class="row">
+        <div id="pokemon_selected_moves" class="col"></div>
+    </div>
     `;
+
+    let moveID = document.getElementById('pokemon_selected_moves')
+    moveID.innerHTML = '';
+
+    for (let i = 0; i < currentPokemon['moves'].length; i++) {
+        const move = currentPokemon['moves'][i]['move']['name'];
+        moveID.innerHTML += /* html */`<p>${move}</p>`
+    }
 }
 
 function toggleVisibility() {
