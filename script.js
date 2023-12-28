@@ -43,7 +43,7 @@ async function showPokemonDetail(pokemonID) {
 function renderPokemonInfo() {
     let color = getColor(currentPokemon['types'][0]['type']['name']);
     document.getElementById('pokemon_detail').innerHTML = renderPokemonInfoHTML(color);
-    renderPokemonAbout();
+    renderPokemonValues('pokemon_selected_infos', renderPokemonAboutHTML());
 }
 
 
@@ -52,38 +52,29 @@ function renderPokemonOverviewCard(pokemonName, imgURL, pokemonID, color, pokemo
 }
 
 
-function renderPokemonAbout() {
-    document.getElementById('pokemon_selected_infos').innerHTML = /* html */`
-        <div class="w-40">
-            <p class="">Species</p>
-            <p class="">Height</p>       
-            <p class="">Weight</p>       
-            <p class="">Abilities</p>
-            <h5 class="mb-4">Breeding</h5>
-            <p class="">Gender</p>       
-            <p class="">Egg Groups</p>   
-            <p class="">Egg Cycle</p>
-        </div>
-        <div class="w-60">
-            <p><b>API Wert ?</b></p>
-            <p><b>${currentPokemon['height']}</b></p>
-            <p><b>${currentPokemon['weight']}</b></p>
-            <p><b>${currentPokemon['abilities'][0]['ability']['name']}</b></p>
-            <h5 class="mb-4" style="color: white;">Breeding</h5>
-            <p><b>API Wert ?</b></p>
-            <p><b>API Wert aus species/PokemonID</b></p>
-            <p><b>API Wert ?</b></p>
-        </div>
-    `;
+function renderPokemonValues(ID, returnHTML) {
+    document.getElementById(ID).innerHTML = returnHTML;
+    
+    if (returnHTML === renderPokemonAboutHTML()) {
+        renderPokemonAbilities();
+    }
 }
 
 
-function renderPokemonBaseStats() {
-    document.getElementById('pokemon_selected_infos').innerHTML = /* html */`
-    <div class="w-40">test</div>
-    <div class="w-60">test</div>
-    `;
+function renderPokemonAbilities() {
+    let abilitiyID = document.getElementById('pokemon_selected_abilities')
+    abilitiyID.innerHTML = '';
+
+    for (let i = 0; i < currentPokemon['abilities'].length; i++) {
+        const ability = currentPokemon['abilities'][i]['ability']['name'];
+        abilitiyID.innerHTML += /* html */`${ability} `
+    }
 }
+
+
+/* function renderPokemonBaseStats() {
+    document.getElementById('pokemon_selected_infos').innerHTML = renderPokemonStatsHTML();
+} */
 
 
 function renderPokemonEvolution() {

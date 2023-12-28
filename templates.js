@@ -16,11 +16,11 @@ function renderPokemonInfoHTML(color) {
         <div class="ms-4 me-4"  style="margin-top: 32px;">
             <ul class="nav nav-underline justify-content-between mb-4">
                 <li class="nav-item">
-                <a class="nav-link text-dark pointer" onclick="renderPokemonAbout()">About</a>
+                <a class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonAboutHTML())">About</a>
                 <!-- class="active border-primary " aria-current="page" -->
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark pointer" onclick="renderPokemonBaseStats()">Base Stats</a>
+                <a class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonStatsHTML())">Base Stats</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link text-dark pointer" onclick="renderPokemonEvolution()">Evolution</a>
@@ -29,10 +29,58 @@ function renderPokemonInfoHTML(color) {
                 <a class="nav-link text-dark pointer" onclick="renderPokemonMoves()">Moves</a>
                 </li>
             </ul>
-            <div id="pokemon_selected_infos" class="d-flex"></div>
+            <div id="pokemon_selected_infos" class="d-flex align-items-center" style="height: 350px;"></div><!--  style="height: 400px;" -->
         </div>
     </div>
   `
+}
+
+
+function renderPokemonAboutHTML() {
+    return /* html */`
+        <div class="w-40">
+            <p class="">Species</p>
+            <p class="">Height</p>       
+            <p class="">Weight</p>       
+            <p>Abilities</p>
+            <h5 class="mb-4">Breeding</h5>
+            <p class="">Gender</p>       
+            <p class="">Egg Groups</p>   
+            <p class="">Egg Cycle</p>
+        </div>
+        <div class="w-60">
+            <p><b>API Wert ?</b></p>
+            <p><b>${currentPokemon['height']}</b></p>
+            <p><b>${currentPokemon['weight']}</b></p>
+            <p class="text-capitalize"><b id="pokemon_selected_abilities"></b></p>
+            <h5 class="mb-4" style="color: white;">Breeding</h5>
+            <p><b>API Wert ?</b></p>
+            <p><b>API Wert aus species/PokemonID</b></p>
+            <p><b>API Wert ?</b></p>
+        </div>
+    `;
+}
+
+
+function renderPokemonStatsHTML() {
+    return /* html */`
+        <div class="w-40">
+            <p>HP</p>
+            <p>Attack</p>
+            <p>Defense</p>
+            <p>Special Attack</p>
+            <p>Special Defense</p>
+            <p>Speed</p> 
+        </div>
+        <div class="w-60">
+            <p><b>${currentPokemon['stats'][0]['base_stat']}</b></p>
+            <p><b>${currentPokemon['stats'][1]['base_stat']}</b></p>
+            <p><b>${currentPokemon['stats'][2]['base_stat']}</b></p>
+            <p><b>${currentPokemon['stats'][3]['base_stat']}</b></p>
+            <p><b>${currentPokemon['stats'][4]['base_stat']}</b></p>
+            <p><b>${currentPokemon['stats'][5]['base_stat']}</b></p>         
+        </div>
+    `;
 }
 
 
