@@ -39,24 +39,20 @@ function renderPokemonInfoHTML(color) {
 function renderPokemonAboutHTML() {
     return /* html */`
         <div class="w-40">
-            <p class="">Species</p>
+            <p class="">Base Happiness</p>
             <p class="">Height</p>       
             <p class="">Weight</p>       
-            <p>Abilities</p>
-            <h5 class="mb-4">Breeding</h5>
-            <p class="">Gender</p>       
+            <p>Abilities</p>      
             <p class="">Egg Groups</p>   
-            <p class="">Egg Cycle</p>
+            
         </div>
         <div class="w-60">
-            <p><b>API Wert ?</b></p>
+            <p><b>${currentSpecies['base_happiness']}</b></p>
             <p><b>${currentPokemon['height']}</b></p>
             <p><b>${currentPokemon['weight']}</b></p>
             <p class="text-capitalize"><b id="pokemon_selected_abilities"></b></p>
-            <h5 class="mb-4" style="color: white;">Breeding</h5>
-            <p><b>API Wert ?</b></p>
-            <p><b>API Wert aus species/PokemonID</b></p>
-            <p><b>API Wert ?</b></p>
+            <p><b>${currentSpecies['egg_groups'][0]['name']}</b></p>
+            
         </div>
     `;
 }

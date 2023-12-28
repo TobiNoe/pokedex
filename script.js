@@ -1,4 +1,5 @@
 let currentPokemon;
+let currentSpecies;
 let pokemonList;
 
 
@@ -9,11 +10,16 @@ function init() {
 
 
 async function loadPokemon(pokemonID) {
-    /* let pokemonID = Number(id);
-    pokemonID++; */
     let url = `https://pokeapi.co/api/v2/pokemon/${pokemonID}`;
     let response = await fetch(url);
     currentPokemon = await response.json();
+}
+
+
+async function loadSpecies(pokemonID) {
+    let url = `https://pokeapi.co/api/v2/pokemon-species/${pokemonID}`;
+    let response = await fetch(url);
+    currentSpecies = await response.json();
 }
 
 
@@ -35,6 +41,7 @@ async function loadPokemonList() {
 
 async function showPokemonDetail(pokemonID) {
     await loadPokemon(pokemonID);
+    await loadSpecies(pokemonID);
     renderPokemonInfo();
     toggleVisibility();
 }
@@ -54,7 +61,7 @@ function renderPokemonOverviewCard(pokemonName, imgURL, pokemonID, color, pokemo
 
 function renderPokemonValues(ID, returnHTML) {
     document.getElementById(ID).innerHTML = returnHTML;
-    
+
     if (returnHTML === renderPokemonAboutHTML()) {
         renderPokemonAbilities();
     }
