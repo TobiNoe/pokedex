@@ -16,17 +16,17 @@ function renderPokemonInfoHTML(color) {
         <div class="ms-4 me-4"  style="margin-top: 32px;">
             <ul class="nav nav-underline justify-content-between mb-4">
                 <li class="nav-item">
-                <a class="nav-link text-dark active" onclick="renderPokemonAbout()">About</a>
+                <a class="nav-link text-dark pointer" onclick="renderPokemonAbout()">About</a>
                 <!-- class="active border-primary " aria-current="page" -->
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark" onclick="renderPokemonBaseStats()">Base Stats</a>
+                <a class="nav-link text-dark pointer" onclick="renderPokemonBaseStats()">Base Stats</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark" onclick="renderPokemonEvolution()">Evolution</a>
+                <a class="nav-link text-dark pointer" onclick="renderPokemonEvolution()">Evolution</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark" onclick="renderPokemonMoves()">Moves</a>
+                <a class="nav-link text-dark pointer" onclick="renderPokemonMoves()">Moves</a>
                 </li>
             </ul>
             <div id="pokemon_selected_infos" class="d-flex"></div>
@@ -36,27 +36,14 @@ function renderPokemonInfoHTML(color) {
 }
 
 
-function renderPokemonOverviewCardHTML(pokemonName, imgURL, pokemonID, color) {
+function renderPokemonOverviewCardHTML(pokemonName, imgURL, pokemonID, color, pokemonType) {
     return /*html*/`
-        <!-- <div 
-        class="col-12 col-sm-6 col-lg-4 col-xl-3 d-flex justify-content-center justify-content-sm-between  mb-4">
-            <div class="card" style="max-width: 21rem; background-color: ${color}; color: white;">
-            <div class="card-body d-flex justify-content-between align-items-center">
-                    <h3 class="card-title text-capitalize">${pokemonName}</h5>
-                    <h4 class="card-subtitle mb-2 text-body-secondary">${pokemonID}</h6>
-            </div>    
-            <img src="${imgURL}" class="img-card" alt="Bild_${pokemonName}">
-                <div class="card-body d-flex justify-content-center align-items-center">
-                    <a class="btn btn-primary" onclick="showPokemonDetail(${pokemonID})">Show Pokemon</a>
-                </div>
-            </div>
-        </div> -->
         <div 
         class="col-12 col-sm-6 col-lg-4 col-xl-3 d-flex flex-column mb-4"><!-- d-flex justify-content-center justify-content-sm-between -->
             <div class=" rounded" style="max-width: 100%; background-color: ${color}; color: white;" onclick="showPokemonDetail(${pokemonID})">
                 <div class="ps-2 pt-2"><!-- d-flex justify-content-between align-items-center -->
                     <h3 class="card-title text-capitalize">${pokemonName}</h5>
-                    <h4 class="card-subtitle mb-2 text-body-secondary">${pokemonID}</h6>
+                    <h4 class="card-subtitle mb-2 text-capitalize">${pokemonType}</h4>
                 </div>
                 <div class="d-flex">
                     <div class="w-40"></div>
