@@ -25,3 +25,8 @@
 .pointer {
     cursor: pointer;
 }
+
+.text-column-two {
+    columns: 50px 2;
+    height: 280px;
+}

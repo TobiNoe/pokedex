@@ -29,7 +29,7 @@ function renderPokemonInfoHTML(color) {
                 <a class="nav-link text-dark pointer" onclick="renderPokemonMoves()">Moves</a>
                 </li>
             </ul>
-            <div id="pokemon_selected_infos" class="d-flex align-items-center" style="height: 300px;"></div><!--  style="height: 400px;" -->
+            <div id="pokemon_selected_infos" class="d-flex align-items-center overflow-auto" style="height: 300px;"></div><!--  style="height: 400px;" -->
         </div>
     </div>
   `
