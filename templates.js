@@ -3,10 +3,10 @@ function renderPokemonInfoHTML(color) {
     <div class="card-body d-flex justify-content-between border-top rounded-top-4" style="background-color: ${color}; color: white; height: 300px;">
         <div>
         <h3 class="text-capitalize">${currentPokemon['name']}</h3>
-        <p class="card-text text-capitalize">${currentPokemon['types'][0]['type']['name']}</p>
+        <h5 class="card-text text-capitalize">${currentPokemon['types'][0]['type']['name']}</h5>
         </div>
         <div>
-            <p class="pointer" onclick="toggleVisibility()">close</p>
+            <h5 class="pointer" onclick="toggleVisibility()">close</h5>
         </div>
      </div>
      <div class="position-fixed w-100 d-flex justify-content-center" style="top: 48px;"><!-- style="background-color: rgb(83, 245, 191);" -->
@@ -86,8 +86,8 @@ function renderPokemonOverviewCardHTML(pokemonName, imgURL, pokemonID, color, po
         class="col-12 col-sm-6 col-lg-4 col-xl-3 d-flex flex-column mb-4"><!-- d-flex justify-content-center justify-content-sm-between -->
             <div class=" rounded" style="max-width: 100%; background-color: ${color}; color: white;" onclick="showPokemonDetail(${pokemonID})">
                 <div class="ps-2 pt-2"><!-- d-flex justify-content-between align-items-center -->
-                    <h3 class="card-title text-capitalize">${pokemonName}</h5>
-                    <h4 class="card-subtitle mb-2 text-capitalize">${pokemonType}</h4>
+                    <h3 class="card-title text-capitalize">${pokemonName}</h3>
+                    <h5 class="card-subtitle mb-2 text-capitalize">${pokemonType}</h5>
                 </div>
                 <div class="d-flex">
                     <div class="w-40"></div>
