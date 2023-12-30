@@ -2,6 +2,8 @@ let currentPokemon;
 let currentSpecies;
 let pokemonList;
 let pokemonCache = [];
+let pokemonPreviewStart = 0;
+let pokemonPreviewEnd = 32;
 
 
 async function init() {
@@ -26,7 +28,7 @@ async function loadSpecies(pokemonID) {
 
 
 async function loadPokemonList() {
-    let url = 'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0.'; //limit from 10000 to 20 sets!!!
+    let url = 'https://pokeapi.co/api/v2/pokemon?limit=10000&offset=0.'; //limit from 10000 to 20 sets!!!
     let response2 = await fetch(url);
     pokemonList = await response2.json();
 
@@ -62,7 +64,7 @@ function cachePokemons(pokemonName, pokemonID) {
 
 async function renderPokemonOverview() {
 
-    for (let i = 0; i < pokemonCache.length; i++) {
+    for (let i = 0; i >= pokemonPreviewStart && i < pokemonPreviewEnd; i++) {
         const pokemonID = pokemonCache[i]['id'];
         await loadPokemon(pokemonID);
         let color = getColor(currentPokemon['types'][0]['type']['name']);
