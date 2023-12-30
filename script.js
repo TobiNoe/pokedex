@@ -60,8 +60,19 @@ function renderPokemonOverviewCard(pokemonName, imgURL, pokemonID, color, pokemo
 function renderPokemonValues(ID, returnHTML) {
     document.getElementById(ID).innerHTML = returnHTML;
 
-    if (returnHTML === renderPokemonAboutHTML()) {
+   /*  if (returnHTML === renderPokemonAboutHTML()) {
         renderPokemonAbilities();
+    } */
+
+    switch (returnHTML) {
+        case renderPokemonAboutHTML():
+            renderPokemonAbilities();
+            break;
+        case renderPokemonMovesContainerHTML():
+            renderPokemonMoves();
+            break;
+        default:
+            console.log("No value found");
     }
 }
 
@@ -91,9 +102,7 @@ function renderPokemonEvolution() {
 
 
 function renderPokemonMoves() {
-    document.getElementById('pokemon_selected_infos').innerHTML = /* html */`
-        <div id="pokemon_selected_moves" class="text-column-two d-box text-capitalize"></div>  
-    `;
+    /* document.getElementById('pokemon_selected_infos').innerHTML = renderPokemonMovesContainerHTML(); */
 
     let moveID = document.getElementById('pokemon_selected_moves')
     moveID.innerHTML = '';
@@ -101,9 +110,7 @@ function renderPokemonMoves() {
     for (let i = 0; i < currentPokemon['moves'].length; i++) {
         const move = currentPokemon['moves'][i]['move']['name'];
         moveID.innerHTML += /* html */`
-        
             <p class="border border-1 rounded-pill p-2 text-center">${move}</p>
-       
         `;
     }
 }

@@ -26,13 +26,32 @@ function renderPokemonInfoHTML(color) {
                 <a class="nav-link text-dark pointer" onclick="renderPokemonEvolution()">Evolution</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark pointer" onclick="renderPokemonMoves()">Moves</a>
+                <a class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonMovesContainerHTML())">Moves</a>
                 </li>
             </ul>
             <div id="pokemon_selected_infos" class="d-flex align-items-center overflow-auto" style="height: 300px;"></div><!--  style="height: 400px;" -->
         </div>
     </div>
   `
+}
+
+
+function renderPokemonOverviewCardHTML(pokemonName, imgURL, pokemonID, color, pokemonType) {
+    return /*html*/`
+        <div 
+        class="col-12 col-sm-6 col-lg-4 col-xl-3 d-flex flex-column mb-4"><!-- d-flex justify-content-center justify-content-sm-between -->
+            <div class="rounded  pointer" style="max-width: 100%; background-color: ${color}; color: white;" onclick="showPokemonDetail(${pokemonID})">
+                <div class="ps-2 pt-2"><!-- d-flex justify-content-between align-items-center -->
+                    <h3 class="card-title text-capitalize">${pokemonName}</h3>
+                    <h5 class="card-subtitle mb-2 text-capitalize">${pokemonType}</h5>
+                </div>
+                <div class="d-flex">
+                    <div class="w-40"></div>
+                    <div class="w-60 d-flex justify-content-end" style="height: 150px;"><img src="${imgURL}" class="img-card" alt="Bild_${pokemonName}"></div>
+                </div>    
+            </div>
+        </div>
+        `
 }
 
 
@@ -80,20 +99,8 @@ function renderPokemonStatsHTML() {
 }
 
 
-function renderPokemonOverviewCardHTML(pokemonName, imgURL, pokemonID, color, pokemonType) {
-    return /*html*/`
-        <div 
-        class="col-12 col-sm-6 col-lg-4 col-xl-3 d-flex flex-column mb-4"><!-- d-flex justify-content-center justify-content-sm-between -->
-            <div class=" rounded" style="max-width: 100%; background-color: ${color}; color: white;" onclick="showPokemonDetail(${pokemonID})">
-                <div class="ps-2 pt-2"><!-- d-flex justify-content-between align-items-center -->
-                    <h3 class="card-title text-capitalize">${pokemonName}</h3>
-                    <h5 class="card-subtitle mb-2 text-capitalize">${pokemonType}</h5>
-                </div>
-                <div class="d-flex">
-                    <div class="w-40"></div>
-                    <div class="w-60 d-flex justify-content-end" style="height: 150px;"><img src="${imgURL}" class="img-card" alt="Bild_${pokemonName}"></div>
-                </div>    
-            </div>
-        </div>
-        `
+function renderPokemonMovesContainerHTML() {
+    return /* html */`
+        <div id="pokemon_selected_moves" class="text-column-two d-box text-capitalize"></div>  
+    `;
 }
