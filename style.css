@@ -30,3 +30,16 @@
     columns: 50px 2;
     height: 280px;
 }
+
+
+@media (max-width: 450px) {
+
+    .w-40 {
+        width: 50%;
+    }
+    
+    .w-60 {
+        width: 50%;
+    }
+    
+}
