@@ -104,3 +104,10 @@ function renderPokemonMovesContainerHTML() {
         <div id="pokemon_selected_moves" class="text-column-two d-box text-capitalize"></div>  
     `;
 }
+
+
+function renderPokemonMovesHTML(color, move) {
+    return /* html */`
+    <p class="border border-1 rounded-pill p-2 text-center" style="background-color: ${color}; color: white;">${move}</p>
+    `;
+}

@@ -102,16 +102,14 @@ function renderPokemonEvolution() {
 
 
 function renderPokemonMoves() {
-    /* document.getElementById('pokemon_selected_infos').innerHTML = renderPokemonMovesContainerHTML(); */
-
+    let color = getColor(currentPokemon['types'][0]['type']['name']);
     let moveID = document.getElementById('pokemon_selected_moves')
     moveID.innerHTML = '';
 
+
     for (let i = 0; i < currentPokemon['moves'].length; i++) {
         const move = currentPokemon['moves'][i]['move']['name'];
-        moveID.innerHTML += /* html */`
-            <p class="border border-1 rounded-pill p-2 text-center">${move}</p>
-        `;
+        moveID.innerHTML += renderPokemonMovesHTML(color, move);
     }
 }
 
