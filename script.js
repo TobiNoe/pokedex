@@ -1,11 +1,13 @@
 let currentPokemon;
 let currentSpecies;
 let pokemonList;
+let pokemonCache = [];
 
 
-function init() {
+async function init() {
     /* loadPokemon(); */
-    loadPokemonList();
+    await loadPokemonList();
+    renderPokemonOverview();
 }
 
 
@@ -28,12 +30,45 @@ async function loadPokemonList() {
     let response2 = await fetch(url);
     pokemonList = await response2.json();
 
-    for (let i = 0; i < pokemonList['results'].length; i++) {
+    for (let y = 0; y < pokemonList['results'].length; y++) {
+        const pokemonName = pokemonList['results'][y]['name'];
+        const pokemonID = y + 1;
+        console.log(pokemonName, pokemonID);/* löschen */
+        cachePokemons(pokemonName, pokemonID);   
+    }
+
+    console.log(pokemonCache);
+
+  /*   for (let i = 0; i < pokemonList['results'].length; i++) {
         const pokemonID = i + 1;
         await loadPokemon(pokemonID);
         let color = getColor(currentPokemon['types'][0]['type']['name']);
         renderPokemonOverviewCard(currentPokemon['species']['name'], currentPokemon['sprites']['other']['home']['front_default'], pokemonID, color, currentPokemon['types'][0]['type']['name']);
+    } */
+}
+
+
+function cachePokemons(pokemonName, pokemonID) {
+
+    let pokemonDataset = {
+        name: pokemonName,
+        id:   pokemonID
+    };
+
+    pokemonCache.push(pokemonDataset);
+}
+
+
+
+async function renderPokemonOverview() {
+
+    for (let i = 0; i < pokemonCache.length; i++) {
+        const pokemonID = pokemonCache[i]['id'];
+        await loadPokemon(pokemonID);
+        let color = getColor(currentPokemon['types'][0]['type']['name']);
+        renderPokemonOverviewCard(currentPokemon['species']['name'], currentPokemon['sprites']['other']['home']['front_default'], pokemonID, color, currentPokemon['types'][0]['type']['name']);
     }
+
 }
 
 
