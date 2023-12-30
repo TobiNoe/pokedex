@@ -57,6 +57,34 @@ function renderPokemonOverviewCardHTML(pokemonName, imgURL, pokemonID, color, po
 
 function renderPokemonAboutHTML() {
     return /* html */`
+    <div class="w-100">
+        <div class="w-100 d-flex align-items-center">
+            <p class="w-40">Base Happiness</p>
+            <p class="w-60"><b>${currentSpecies['base_happiness']}</b></p>
+        </div>
+        <div class="w-100 d-flex align-items-center">
+            <p class="w-40">Height</p>
+            <p class="w-60"><b>${currentPokemon['height']}</b></p>
+        </div>
+        <div class="w-100 d-flex align-items-center">
+            <p class="w-40">Weight</p>
+            <p class="w-60"><b>${currentPokemon['weight']}</b></p>
+        </div>
+        <div class="w-100 d-flex align-items-center">
+            <p class="w-40">Abilities</p>
+            <p class="w-60 text-capitalize"><b id="pokemon_selected_abilities"></b></p>
+        </div>
+        <div class="w-100 d-flex align-items-center">
+            <p class="w-40">Egg Groups</p>
+            <p class="w-60 text-capitalize"><b>${currentSpecies['egg_groups'][0]['name']}</b></p>
+        </div>
+    </div>    
+    `;
+}
+
+
+/* function renderPokemonAboutHTML() {
+    return /* html `
         <div class="w-40">
             <p class="">Base Happiness</p>
             <p class="">Height</p>       
@@ -74,7 +102,7 @@ function renderPokemonAboutHTML() {
             
         </div>
     `;
-}
+} */
 
 
 function renderPokemonStatsHTML() {
