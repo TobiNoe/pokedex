@@ -168,7 +168,7 @@ function getColor(typeOfPokemon) {
 
 
 // Funktion, die aufgerufen wird, wenn das Ende erreicht wurde
-async function amEndeDesBildschirms() {
+async function bottomOfWindowIsReached() {
     renderOverview = true;
     console.log("Unterer Bildschirmrand erreicht!");
     pokemonPreviewEnd += 20;
@@ -179,7 +179,7 @@ async function amEndeDesBildschirms() {
 }
 
 // Funktion zum Überprüfen, ob der untere Bildschirmrand erreicht wurde
-function ueberpruefeUnterenRand() {
+function checkIfBottomOfWindowIsReached() {
     // Wenn die Verarbeitung im Gange ist, beende die Funktion frühzeitig
     if (renderOverview) {
         return;
@@ -194,11 +194,11 @@ function ueberpruefeUnterenRand() {
     // Aktuelle Bildschirmhöhe
     let aktuelleHoehe = window.innerHeight;/*  || document.documentElement.clientHeight || document.body.clientHeight */
 
-    // Überprüfen, ob der untere Bildschirmrand erreicht wurde (mit einer Toleranz von 10 Pixeln)
-    if (gesamteDokumentHoehe - (scrollPositionVonOben + aktuelleHoehe) < 1) {
-        amEndeDesBildschirms();
+    // Überprüfen, ob der untere Bildschirmrand erreicht wurde (mit einer Toleranz von 50 Pixeln)
+    if (gesamteDokumentHoehe - (scrollPositionVonOben + aktuelleHoehe) < 50) {
+        bottomOfWindowIsReached();
     }
 }
 
 // Eventlistener für das Scroll-Event hinzufügen
-window.addEventListener("scroll", ueberpruefeUnterenRand);
+window.addEventListener("scroll", checkIfBottomOfWindowIsReached);
