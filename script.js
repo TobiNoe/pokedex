@@ -2,8 +2,8 @@ let currentPokemon;
 let currentSpecies;
 let pokemonList;
 let pokemonCache = [];
-let pokemonPreviewStart = 0;
-let pokemonPreviewEnd = 32;
+let pokemonPreviewEnd = 20;
+let renderOverview = false;
 
 
 async function init() {
@@ -36,17 +36,17 @@ async function loadPokemonList() {
         const pokemonName = pokemonList['results'][y]['name'];
         const pokemonID = y + 1;
         console.log(pokemonName, pokemonID);/* löschen */
-        cachePokemons(pokemonName, pokemonID);   
+        cachePokemons(pokemonName, pokemonID);
     }
 
     console.log(pokemonCache);
 
-  /*   for (let i = 0; i < pokemonList['results'].length; i++) {
-        const pokemonID = i + 1;
-        await loadPokemon(pokemonID);
-        let color = getColor(currentPokemon['types'][0]['type']['name']);
-        renderPokemonOverviewCard(currentPokemon['species']['name'], currentPokemon['sprites']['other']['home']['front_default'], pokemonID, color, currentPokemon['types'][0]['type']['name']);
-    } */
+    /*   for (let i = 0; i < pokemonList['results'].length; i++) {
+          const pokemonID = i + 1;
+          await loadPokemon(pokemonID);
+          let color = getColor(currentPokemon['types'][0]['type']['name']);
+          renderPokemonOverviewCard(currentPokemon['species']['name'], currentPokemon['sprites']['other']['home']['front_default'], pokemonID, color, currentPokemon['types'][0]['type']['name']);
+      } */
 }
 
 
@@ -54,7 +54,7 @@ function cachePokemons(pokemonName, pokemonID) {
 
     let pokemonDataset = {
         name: pokemonName,
-        id:   pokemonID
+        id: pokemonID
     };
 
     pokemonCache.push(pokemonDataset);
@@ -64,13 +64,12 @@ function cachePokemons(pokemonName, pokemonID) {
 
 async function renderPokemonOverview() {
 
-    for (let i = 0; i >= pokemonPreviewStart && i < pokemonPreviewEnd; i++) {
+    for (let i = pokemonPreviewEnd - 20; i < pokemonPreviewEnd && pokemonCache.length; i++) {
         const pokemonID = pokemonCache[i]['id'];
         await loadPokemon(pokemonID);
         let color = getColor(currentPokemon['types'][0]['type']['name']);
         renderPokemonOverviewCard(currentPokemon['species']['name'], currentPokemon['sprites']['other']['home']['front_default'], pokemonID, color, currentPokemon['types'][0]['type']['name']);
     }
-
 }
 
 
@@ -97,9 +96,9 @@ function renderPokemonOverviewCard(pokemonName, imgURL, pokemonID, color, pokemo
 function renderPokemonValues(ID, returnHTML) {
     document.getElementById(ID).innerHTML = returnHTML;
 
-   /*  if (returnHTML === renderPokemonAboutHTML()) {
-        renderPokemonAbilities();
-    } */
+    /*  if (returnHTML === renderPokemonAboutHTML()) {
+         renderPokemonAbilities();
+     } */
 
     switch (returnHTML) {
         case renderPokemonAboutHTML():
@@ -169,21 +168,31 @@ function getColor(typeOfPokemon) {
 
 
 // Funktion, die aufgerufen wird, wenn das Ende erreicht wurde
-function amEndeDesBildschirms() {
+async function amEndeDesBildschirms() {
+    renderOverview = true;
     console.log("Unterer Bildschirmrand erreicht!");
+    pokemonPreviewEnd += 20;
+    console.log(pokemonPreviewEnd);
+    await renderPokemonOverview();
+    renderOverview = false;
     // Hier kannst du den Code für deine gewünschte Aktion einfügen
 }
 
 // Funktion zum Überprüfen, ob der untere Bildschirmrand erreicht wurde
 function ueberpruefeUnterenRand() {
+    // Wenn die Verarbeitung im Gange ist, beende die Funktion frühzeitig
+    if (renderOverview) {
+        return;
+    }
+
     // Aktuelle Scroll-Position von oben
-    var scrollPositionVonOben = window.scrollY;/*  || window.pageYOffset || document.documentElement.scrollTop */
+    let scrollPositionVonOben = window.scrollY;/*  || window.pageYOffset || document.documentElement.scrollTop */
 
     // Gesamte Höhe des gerenderten Inhalts im Dokument
-    var gesamteDokumentHoehe = document.documentElement.scrollHeight;
+    let gesamteDokumentHoehe = document.documentElement.scrollHeight;
 
     // Aktuelle Bildschirmhöhe
-    var aktuelleHoehe = window.innerHeight;/*  || document.documentElement.clientHeight || document.body.clientHeight */
+    let aktuelleHoehe = window.innerHeight;/*  || document.documentElement.clientHeight || document.body.clientHeight */
 
     // Überprüfen, ob der untere Bildschirmrand erreicht wurde (mit einer Toleranz von 10 Pixeln)
     if (gesamteDokumentHoehe - (scrollPositionVonOben + aktuelleHoehe) < 1) {
