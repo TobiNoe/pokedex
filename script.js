@@ -1,10 +1,11 @@
 let currentPokemon;
 let currentSpecies;
+let loadedPokemon;
 let pokemonList;
 let pokemonCache = [];
 let pokemonRange = 20;
 let pokemonPreviewEnd = pokemonRange;
-let pokemonPreview = 200;
+let pokemonPreview = 500;
 let renderOverview = false;
 
 
@@ -18,7 +19,8 @@ async function init() {
 async function loadPokemon(pokemonName) {
     let url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
     let response = await fetch(url);
-    currentPokemon = await response.json();
+    let pokemon = await response.json();/* currentPokemon */
+    return pokemon;
 }
 
 
@@ -69,15 +71,15 @@ async function renderPokemonOverview() {
     for (let i = pokemonPreviewEnd - pokemonRange; i < pokemonPreviewEnd && i < pokemonPreview; i++) {
         const pokemonName = pokemonCache[i]['name'];
         /* console.log(pokemonCache[i], i, pokemonPreviewEnd, pokemonPreview, i < pokemonPreviewEnd && i < pokemonPreview); */
-        await loadPokemon(pokemonName);/* pokemonID */
-        let color = getColor(currentPokemon['types'][0]['type']['name']);
-        renderPokemonOverviewCard(pokemonName, currentPokemon['sprites']['other']['home']['front_default'], color, currentPokemon['types'][0]['type']['name']);
+        loadedPokemon = await loadPokemon(pokemonName);/* pokemonID */
+        let color = getColor(loadedPokemon['types'][0]['type']['name']);
+        renderPokemonOverviewCard(pokemonName, loadedPokemon['sprites']['other']['home']['front_default'], color, loadedPokemon['types'][0]['type']['name']);
     }
 }
 
 
 async function showPokemonDetail(pokemonName) {
-    await loadPokemon(pokemonName);
+    currentPokemon = await loadPokemon(pokemonName);
     await loadSpecies(pokemonName);
     renderPokemonInfo();
     toggleVisibility();    
