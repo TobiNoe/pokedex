@@ -36,11 +36,11 @@ function renderPokemonInfoHTML(color) {
 }
 
 
-function renderPokemonOverviewCardHTML(pokemonName, imgURL, pokemonID, color, pokemonType) {
+function renderPokemonOverviewCardHTML(pokemonName, imgURL, color, pokemonType) {
     return /*html*/`
         <div 
         class="col-12 col-sm-6 col-lg-4 col-xl-3 d-flex flex-column mb-4"><!-- d-flex justify-content-center justify-content-sm-between -->
-            <div class="rounded  pointer" style="max-width: 100%; background-color: ${color}; color: white;" onclick="showPokemonDetail(${pokemonID})">
+            <div class="rounded  pointer" style="max-width: 100%; background-color: ${color}; color: white;" onclick="showPokemonDetail('${pokemonName}')">
                 <div class="ps-2 pt-2"><!-- d-flex justify-content-between align-items-center -->
                     <h3 class="card-title text-capitalize">${pokemonName}</h3>
                     <h5 class="card-subtitle mb-2 text-capitalize">${pokemonType}</h5>

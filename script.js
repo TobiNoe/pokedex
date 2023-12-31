@@ -2,7 +2,9 @@ let currentPokemon;
 let currentSpecies;
 let pokemonList;
 let pokemonCache = [];
-let pokemonPreviewEnd = 20;
+let pokemonRange = 20;
+let pokemonPreviewEnd = pokemonRange;
+let pokemonPreview = 200;
 let renderOverview = false;
 
 
@@ -13,29 +15,29 @@ async function init() {
 }
 
 
-async function loadPokemon(pokemonID) {
-    let url = `https://pokeapi.co/api/v2/pokemon/${pokemonID}`;
+async function loadPokemon(pokemonName) {
+    let url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
     let response = await fetch(url);
     currentPokemon = await response.json();
 }
 
 
-async function loadSpecies(pokemonID) {
-    let url = `https://pokeapi.co/api/v2/pokemon-species/${pokemonID}`;
+async function loadSpecies(pokemonName) {
+    let url = `https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`;
     let response = await fetch(url);
     currentSpecies = await response.json();
 }
 
 
 async function loadPokemonList() {
-    let url = 'https://pokeapi.co/api/v2/pokemon?limit=10000&offset=0.'; //limit from 10000 to 20 sets!!!
+    let url = `https://pokeapi.co/api/v2/pokemon?limit=${pokemonPreview}&offset=0.`; //limit from 10000 to 20 sets!!!
     let response2 = await fetch(url);
     pokemonList = await response2.json();
 
     for (let y = 0; y < pokemonList['results'].length; y++) {
         const pokemonName = pokemonList['results'][y]['name'];
         const pokemonID = y + 1;
-        console.log(pokemonName, pokemonID);/* löschen */
+        /* console.log(pokemonName, pokemonID);/* löschen */ 
         cachePokemons(pokemonName, pokemonID);
     }
 
@@ -64,11 +66,12 @@ function cachePokemons(pokemonName, pokemonID) {
 
 async function renderPokemonOverview() {
 
-    for (let i = pokemonPreviewEnd - 20; i < pokemonPreviewEnd && pokemonCache.length; i++) {
-        const pokemonID = pokemonCache[i]['id'];
-        await loadPokemon(pokemonID);
+    for (let i = pokemonPreviewEnd - pokemonRange; i < pokemonPreviewEnd && i < pokemonPreview; i++) {
+        const pokemonName = pokemonCache[i]['name'];
+        /* console.log(pokemonCache[i], i, pokemonPreviewEnd, pokemonPreview, i < pokemonPreviewEnd && i < pokemonPreview); */
+        await loadPokemon(pokemonName);/* pokemonID */
         let color = getColor(currentPokemon['types'][0]['type']['name']);
-        renderPokemonOverviewCard(currentPokemon['species']['name'], currentPokemon['sprites']['other']['home']['front_default'], pokemonID, color, currentPokemon['types'][0]['type']['name']);
+        renderPokemonOverviewCard(pokemonName, currentPokemon['sprites']['other']['home']['front_default'], color, currentPokemon['types'][0]['type']['name']);
     }
 }
 
@@ -170,9 +173,9 @@ function getColor(typeOfPokemon) {
 // Funktion, die aufgerufen wird, wenn das Ende erreicht wurde
 async function bottomOfWindowIsReached() {
     renderOverview = true;
-    console.log("Unterer Bildschirmrand erreicht!");
+    /* console.log("Unterer Bildschirmrand erreicht!"); */
     pokemonPreviewEnd += 20;
-    console.log(pokemonPreviewEnd);
+    /* console.log(pokemonPreviewEnd); */
     await renderPokemonOverview();
     renderOverview = false;
     // Hier kannst du den Code für deine gewünschte Aktion einfügen
