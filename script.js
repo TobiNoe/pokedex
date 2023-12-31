@@ -76,11 +76,11 @@ async function renderPokemonOverview() {
 }
 
 
-async function showPokemonDetail(pokemonID) {
-    await loadPokemon(pokemonID);
-    await loadSpecies(pokemonID);
+async function showPokemonDetail(pokemonName) {
+    await loadPokemon(pokemonName);
+    await loadSpecies(pokemonName);
     renderPokemonInfo();
-    toggleVisibility();
+    toggleVisibility();    
 }
 
 
