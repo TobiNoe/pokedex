@@ -163,3 +163,33 @@ function doNotToggleVisibility(event) {
 function getColor(typeOfPokemon) {
     return colours[typeOfPokemon];
 }
+
+
+/* Testfunktion zum ermitteln des unteren Bildschirmrandes */
+
+
+// Funktion, die aufgerufen wird, wenn das Ende erreicht wurde
+function amEndeDesBildschirms() {
+    console.log("Unterer Bildschirmrand erreicht!");
+    // Hier kannst du den Code für deine gewünschte Aktion einfügen
+}
+
+// Funktion zum Überprüfen, ob der untere Bildschirmrand erreicht wurde
+function ueberpruefeUnterenRand() {
+    // Aktuelle Scroll-Position von oben
+    var scrollPositionVonOben = window.scrollY;/*  || window.pageYOffset || document.documentElement.scrollTop */
+
+    // Gesamte Höhe des gerenderten Inhalts im Dokument
+    var gesamteDokumentHoehe = document.documentElement.scrollHeight;
+
+    // Aktuelle Bildschirmhöhe
+    var aktuelleHoehe = window.innerHeight;/*  || document.documentElement.clientHeight || document.body.clientHeight */
+
+    // Überprüfen, ob der untere Bildschirmrand erreicht wurde (mit einer Toleranz von 10 Pixeln)
+    if (gesamteDokumentHoehe - (scrollPositionVonOben + aktuelleHoehe) < 1) {
+        amEndeDesBildschirms();
+    }
+}
+
+// Eventlistener für das Scroll-Event hinzufügen
+window.addEventListener("scroll", ueberpruefeUnterenRand);
