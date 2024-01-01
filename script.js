@@ -4,16 +4,15 @@ let loadedPokemon;
 let pokemonList;
 let pokemonCache = [];
 let pokemonSearch = [];
-let pokemonRange = 20;
-let pokemonPreviewEnd = pokemonRange;
+let pokemonRange;
+let pokemonPreviewEnd;
 let pokemonPreview = 500;
-let renderOverview = false;
+let renderOverview;
 
 
 async function init() {
-    /* loadPokemon(); */
     await loadPokemonList();
-    renderPokemonOverview();
+    switchRenderOverview();
 }
 
 
@@ -40,18 +39,8 @@ async function loadPokemonList() {
     for (let y = 0; y < pokemonList['results'].length; y++) {
         const pokemonName = pokemonList['results'][y]['name'];
         const pokemonID = y + 1;
-        /* console.log(pokemonName, pokemonID);/* löschen */
         cachePokemons(pokemonName, pokemonID);
     }
-
-    console.log(pokemonCache);
-
-    /*   for (let i = 0; i < pokemonList['results'].length; i++) {
-          const pokemonID = i + 1;
-          await loadPokemon(pokemonID);
-          let color = getColor(currentPokemon['types'][0]['type']['name']);
-          renderPokemonOverviewCard(currentPokemon['species']['name'], currentPokemon['sprites']['other']['home']['front_default'], pokemonID, color, currentPokemon['types'][0]['type']['name']);
-      } */
 }
 
 
@@ -66,12 +55,26 @@ function cachePokemons(pokemonName, pokemonID) {
 }
 
 
+function switchRenderOverview() {
+    if (document.getElementById('input_search').value != "") {
+        document.getElementById('pokemon_overview').innerHTML = '';
+        renderOverview = true;
+        readInputField();
+    } else {
+        document.getElementById('pokemon_overview').innerHTML = '';
+        renderOverview = false;
+        pokemonRange = 20;
+        pokemonPreviewEnd = pokemonRange;
+        renderPokemonOverview();
+    }
+}
+
 
 async function renderPokemonOverview() {
+    
 
     for (let i = pokemonPreviewEnd - pokemonRange; i < pokemonPreviewEnd && i < pokemonPreview; i++) {
         const pokemonName = pokemonCache[i]['name'];
-        /* console.log(pokemonCache[i], i, pokemonPreviewEnd, pokemonPreview, i < pokemonPreviewEnd && i < pokemonPreview); */
         loadedPokemon = await loadPokemon(pokemonName);/* pokemonID */
         let color = getColor(loadedPokemon['types'][0]['type']['name']);
         renderPokemonOverviewCard(pokemonName, loadedPokemon['sprites']['other']['home']['front_default'], color, loadedPokemon['types'][0]['type']['name']);
@@ -80,13 +83,9 @@ async function renderPokemonOverview() {
 
 
 async function renderPokemonOverviewSearch() {
-
     pokemonRange = pokemonSearch.length;
     pokemonPreviewEnd = pokemonRange;
-    document.getElementById('pokemon_overview').innerHTML = '';
-    renderOverview = true;
-
-
+    
     for (let i = pokemonPreviewEnd - pokemonRange; i < pokemonPreviewEnd && i < pokemonPreview; i++) {
         const pokemonName = pokemonSearch[i];
         /* console.log(pokemonCache[i], i, pokemonPreviewEnd, pokemonPreview, i < pokemonPreviewEnd && i < pokemonPreview); */
@@ -119,10 +118,6 @@ function renderPokemonOverviewCard(pokemonName, imgURL, pokemonID, color, pokemo
 
 function renderPokemonValues(ID, returnHTML) {
     document.getElementById(ID).innerHTML = returnHTML;
-
-    /*  if (returnHTML === renderPokemonAboutHTML()) {
-         renderPokemonAbilities();
-     } */
 
     switch (returnHTML) {
         case renderPokemonAboutHTML():
