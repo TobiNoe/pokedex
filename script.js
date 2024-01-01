@@ -4,10 +4,11 @@ let loadedPokemon;
 let pokemonList;
 let pokemonCache = [];
 let pokemonSearch = [];
+let pokemonRender = [];
 let pokemonRange;
 let pokemonPreviewEnd;
 let pokemonPreview = 500;
-let renderOverview;
+let renderOverview = false;
 
 
 async function init() {
@@ -38,13 +39,14 @@ async function loadPokemonList() {
 
     for (let y = 0; y < pokemonList['results'].length; y++) {
         const pokemonName = pokemonList['results'][y]['name'];
-        const pokemonID = y + 1;
-        cachePokemons(pokemonName, pokemonID);
+        pokemonCache.push(pokemonName);
+       /*  const pokemonID = y + 1;
+        cachePokemons(pokemonName, pokemonID); */
     }
 }
 
 
-function cachePokemons(pokemonName, pokemonID) {
+/* function cachePokemons(pokemonName, pokemonID) {
 
     let pokemonDataset = {
         name: pokemonName,
@@ -52,29 +54,33 @@ function cachePokemons(pokemonName, pokemonID) {
     };
 
     pokemonCache.push(pokemonDataset);
-}
+} */
 
 
 function switchRenderOverview() {
     if (document.getElementById('input_search').value != "") {
         document.getElementById('pokemon_overview').innerHTML = '';
-        renderOverview = true;
+        pokemonRange = 20;
+        pokemonPreviewEnd = pokemonRange;
         readInputField();
     } else {
         document.getElementById('pokemon_overview').innerHTML = '';
-        renderOverview = false;
         pokemonRange = 20;
         pokemonPreviewEnd = pokemonRange;
-        renderPokemonOverview();
+        pokemonPreview = 500;
+        renderPokemonOverview(pokemonCache);
     }
 }
 
 
-async function renderPokemonOverview() {
-    
+async function renderPokemonOverview(renderDatabase) {
+    pokemonRender = renderDatabase;
+    console.log(pokemonRender);
+    console.log(pokemonRange);
+    console.log(pokemonPreviewEnd);
 
     for (let i = pokemonPreviewEnd - pokemonRange; i < pokemonPreviewEnd && i < pokemonPreview; i++) {
-        const pokemonName = pokemonCache[i]['name'];
+        const pokemonName = pokemonRender[i];
         loadedPokemon = await loadPokemon(pokemonName);/* pokemonID */
         let color = getColor(loadedPokemon['types'][0]['type']['name']);
         renderPokemonOverviewCard(pokemonName, loadedPokemon['sprites']['other']['home']['front_default'], color, loadedPokemon['types'][0]['type']['name']);
@@ -82,18 +88,18 @@ async function renderPokemonOverview() {
 }
 
 
-async function renderPokemonOverviewSearch() {
+/* async function renderPokemonOverviewSearch() {
     pokemonRange = pokemonSearch.length;
     pokemonPreviewEnd = pokemonRange;
     
     for (let i = pokemonPreviewEnd - pokemonRange; i < pokemonPreviewEnd && i < pokemonPreview; i++) {
         const pokemonName = pokemonSearch[i];
-        /* console.log(pokemonCache[i], i, pokemonPreviewEnd, pokemonPreview, i < pokemonPreviewEnd && i < pokemonPreview); */
-        loadedPokemon = await loadPokemon(pokemonName);/* pokemonID */
+        /* console.log(pokemonCache[i], i, pokemonPreviewEnd, pokemonPreview, i < pokemonPreviewEnd && i < pokemonPreview); 
+        loadedPokemon = await loadPokemon(pokemonName);/* pokemonID 
         let color = getColor(loadedPokemon['types'][0]['type']['name']);
         renderPokemonOverviewCard(pokemonName, loadedPokemon['sprites']['other']['home']['front_default'], color, loadedPokemon['types'][0]['type']['name']);
     }
-}
+} */
 
 
 async function showPokemonDetail(pokemonName) {
@@ -187,7 +193,8 @@ async function readInputField() {
     let pokemonSearchStr = document.getElementById('input_search').value.toLowerCase();
     console.log(pokemonSearchStr);
     await fillPokemonSearch(pokemonSearchStr);
-    renderPokemonOverviewSearch();
+    pokemonPreview = pokemonSearch.length;
+    renderPokemonOverview(pokemonSearch);
 }
 
 
@@ -197,8 +204,8 @@ function fillPokemonSearch(pokemonSearchStr) {
     for (let j = 0; j < pokemonCache.length; j++) {
         const pokemon = pokemonCache[j];
 
-        if (pokemon['name'].indexOf(pokemonSearchStr) != -1) {
-            pokemonSearch.push(pokemon['name']);
+        if (pokemon.indexOf(pokemonSearchStr) != -1) {
+            pokemonSearch.push(pokemon);
         }
     }
     console.log(pokemonSearch);
@@ -214,7 +221,7 @@ async function bottomOfWindowIsReached() {
     /* console.log("Unterer Bildschirmrand erreicht!"); */
     pokemonPreviewEnd += 20;
     /* console.log(pokemonPreviewEnd); */
-    await renderPokemonOverview();
+    await renderPokemonOverview(pokemonRender);
     renderOverview = false;
     // Hier kannst du den Code für deine gewünschte Aktion einfügen
 }
