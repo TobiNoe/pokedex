@@ -3,6 +3,7 @@ let currentSpecies;
 let loadedPokemon;
 let pokemonList;
 let pokemonCache = [];
+let pokemonSearch = [];
 let pokemonRange = 20;
 let pokemonPreviewEnd = pokemonRange;
 let pokemonPreview = 500;
@@ -39,7 +40,7 @@ async function loadPokemonList() {
     for (let y = 0; y < pokemonList['results'].length; y++) {
         const pokemonName = pokemonList['results'][y]['name'];
         const pokemonID = y + 1;
-        /* console.log(pokemonName, pokemonID);/* löschen */ 
+        /* console.log(pokemonName, pokemonID);/* löschen */
         cachePokemons(pokemonName, pokemonID);
     }
 
@@ -78,11 +79,29 @@ async function renderPokemonOverview() {
 }
 
 
+async function renderPokemonOverviewSearch() {
+
+    pokemonRange = pokemonSearch.length;
+    pokemonPreviewEnd = pokemonRange;
+    document.getElementById('pokemon_overview').innerHTML = '';
+    renderOverview = true;
+
+
+    for (let i = pokemonPreviewEnd - pokemonRange; i < pokemonPreviewEnd && i < pokemonPreview; i++) {
+        const pokemonName = pokemonSearch[i];
+        /* console.log(pokemonCache[i], i, pokemonPreviewEnd, pokemonPreview, i < pokemonPreviewEnd && i < pokemonPreview); */
+        loadedPokemon = await loadPokemon(pokemonName);/* pokemonID */
+        let color = getColor(loadedPokemon['types'][0]['type']['name']);
+        renderPokemonOverviewCard(pokemonName, loadedPokemon['sprites']['other']['home']['front_default'], color, loadedPokemon['types'][0]['type']['name']);
+    }
+}
+
+
 async function showPokemonDetail(pokemonName) {
     currentPokemon = await loadPokemon(pokemonName);
     await loadSpecies(pokemonName);
     renderPokemonInfo();
-    toggleVisibility();    
+    toggleVisibility();
 }
 
 
@@ -166,6 +185,28 @@ function doNotToggleVisibility(event) {
 
 function getColor(typeOfPokemon) {
     return colours[typeOfPokemon];
+}
+
+
+async function readInputField() {
+    let pokemonSearchStr = document.getElementById('input_search').value.toLowerCase();
+    console.log(pokemonSearchStr);
+    await fillPokemonSearch(pokemonSearchStr);
+    renderPokemonOverviewSearch();
+}
+
+
+function fillPokemonSearch(pokemonSearchStr) {
+    pokemonSearch = [];
+
+    for (let j = 0; j < pokemonCache.length; j++) {
+        const pokemon = pokemonCache[j];
+
+        if (pokemon['name'].indexOf(pokemonSearchStr) != -1) {
+            pokemonSearch.push(pokemon['name']);
+        }
+    }
+    console.log(pokemonSearch);
 }
 
 
