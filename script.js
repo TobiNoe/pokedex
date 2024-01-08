@@ -156,9 +156,29 @@ function renderPokemonAbilities() {
 }
 
 
-/* function renderPokemonBaseStats() {
-    document.getElementById('pokemon_selected_infos').innerHTML = renderPokemonStatsHTML();
-} */
+function maxValue() {
+    let maxValueStats = 100;
+
+    for (let i = 0; i < currentPokemon['stats'].length; i++) {
+        if (currentPokemon['stats'][i]['base_stat'] > maxValueStats) {
+            maxValueStats = currentPokemon['stats'][i]['base_stat']; 
+        }        
+    }
+    console.log(maxValueStats);
+    return maxValueStats;
+}
+
+function percentOfMaxValue() {
+    let maxValueBase = maxValue();
+    let percentStats = [];
+
+    for (let i = 0; i < currentPokemon['stats'].length; i++) {
+        percent = currentPokemon['stats'][i]['base_stat'] / maxValueBase * 100
+        percentStats.push(percent);
+    }
+    console.log(percentStats);
+    return percentStats
+}
 
 
 function renderPokemonEvolution() {
