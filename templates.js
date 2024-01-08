@@ -20,7 +20,7 @@ function renderPokemonInfoHTML(color) {
                 <!-- class="active border-primary " aria-current="page" -->
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonStatsHTML())">Base Stats</a>
+                <a class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonStatsHTML('${color}'))">Base Stats</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link text-dark pointer" onclick="renderPokemonEvolution()">Evolution</a>
@@ -105,43 +105,43 @@ function renderPokemonAboutHTML() {
 } */
 
 
-function renderPokemonStatsHTML() {
+function renderPokemonStatsHTML(color) {
     return /* html */`
         <div class="w-100">
             <div class="w-100 d-flex align-items-center">
                 <p class="w-40">HP</p>
                 <div class="progress w-60 mb-3" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar" style="width: ${currentPokemon['stats'][0]['base_stat']}%"></div>
+                    <div class="progress-bar" style="width: ${currentPokemon['stats'][0]['base_stat']}%; background-color: ${color};">${currentPokemon['stats'][0]['base_stat']}</div>
                 </div>
             </div>
             <div class="w-100 d-flex align-items-center">
                 <p class="w-40">Attack</p>
                 <div class="progress w-60 mb-3" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar" style="width: ${currentPokemon['stats'][1]['base_stat']}%"></div>
+                    <div class="progress-bar" style="width: ${currentPokemon['stats'][1]['base_stat']}%; background-color: ${color};">${currentPokemon['stats'][1]['base_stat']}</div>
                 </div>
             </div>
             <div class="w-100 d-flex align-items-center">
                 <p class="w-40">Defense</p>
                 <div class="progress w-60 mb-3" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar" style="width: ${currentPokemon['stats'][2]['base_stat']}%"></div>
+                    <div class="progress-bar" style="width: ${currentPokemon['stats'][2]['base_stat']}%; background-color: ${color};">${currentPokemon['stats'][2]['base_stat']}</div>
                 </div>
             </div>
             <div class="w-100 d-flex align-items-center">
                 <p class="w-40">Special Attack</p>
                 <div class="progress w-60 mb-3" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar" style="width: ${currentPokemon['stats'][3]['base_stat']}%"></div>
+                    <div class="progress-bar" style="width: ${currentPokemon['stats'][3]['base_stat']}%; background-color: ${color};">${currentPokemon['stats'][3]['base_stat']}</div>
                 </div>
             </div>
             <div class="w-100 d-flex align-items-center">
                 <p class="w-40">Special Defense</p>
                 <div class="progress w-60 mb-3" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar" style="width: ${currentPokemon['stats'][4]['base_stat']}%"></div>
+                    <div class="progress-bar" style="width: ${currentPokemon['stats'][4]['base_stat']}%; background-color: ${color};">${currentPokemon['stats'][4]['base_stat']}</div>
                 </div>
             </div>
             <div class="w-100 d-flex align-items-center">
                 <p class="w-40">Speed</p>
                 <div class="progress w-60 mb-3" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar" style="width: ${currentPokemon['stats'][5]['base_stat']}%"></div>
+                    <div class="progress-bar" style="width: ${currentPokemon['stats'][5]['base_stat']}%; background-color: ${color};">${currentPokemon['stats'][5]['base_stat']}</div>
                 </div>
             </div>
         </div> 
