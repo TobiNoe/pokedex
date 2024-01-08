@@ -9,11 +9,20 @@ let pokemonRange;
 let pokemonPreviewEnd;
 let pokemonPreview = 500;
 let renderOverview = false;
+let pokemonSearchStr = '';
+let timeout;
 
 
 async function init() {
     await loadPokemonList();
     switchRenderOverview();
+}
+
+function fillInputField() {
+    pokemonPreviewEnd = 1;
+    clearTimeout(timeout);
+    console.log(timeout);
+    timeout = setTimeout(switchRenderOverview, 1000);
 }
 
 
@@ -40,8 +49,8 @@ async function loadPokemonList() {
     for (let y = 0; y < pokemonList['results'].length; y++) {
         const pokemonName = pokemonList['results'][y]['name'];
         pokemonCache.push(pokemonName);
-       /*  const pokemonID = y + 1;
-        cachePokemons(pokemonName, pokemonID); */
+        /*  const pokemonID = y + 1;
+         cachePokemons(pokemonName, pokemonID); */
     }
 }
 
@@ -59,15 +68,16 @@ async function loadPokemonList() {
 
 function switchRenderOverview() {
     if (document.getElementById('input_search').value != "") {
-        document.getElementById('pokemon_overview').innerHTML = '';
         pokemonRange = 20;
         pokemonPreviewEnd = pokemonRange;
         readInputField();
-    } else {
         document.getElementById('pokemon_overview').innerHTML = '';
+        renderPokemonOverview(pokemonSearch);
+    } else {
         pokemonRange = 20;
         pokemonPreviewEnd = pokemonRange;
         pokemonPreview = 500;
+        document.getElementById('pokemon_overview').innerHTML = '';
         renderPokemonOverview(pokemonCache);
     }
 }
@@ -75,9 +85,6 @@ function switchRenderOverview() {
 
 async function renderPokemonOverview(renderDatabase) {
     pokemonRender = renderDatabase;
-    console.log(pokemonRender);
-    console.log(pokemonRange);
-    console.log(pokemonPreviewEnd);
 
     for (let i = pokemonPreviewEnd - pokemonRange; i < pokemonPreviewEnd && i < pokemonPreview; i++) {
         const pokemonName = pokemonRender[i];
@@ -190,15 +197,16 @@ function getColor(typeOfPokemon) {
 
 
 async function readInputField() {
-    let pokemonSearchStr = document.getElementById('input_search').value.toLowerCase();
+    pokemonSearchStr = document.getElementById('input_search').value.toLowerCase();
     console.log(pokemonSearchStr);
     await fillPokemonSearch(pokemonSearchStr);
+    pokemonSearchStr = [];
     pokemonPreview = pokemonSearch.length;
-    renderPokemonOverview(pokemonSearch);
+    /* renderPokemonOverview(pokemonSearch); */
 }
 
 
-function fillPokemonSearch(pokemonSearchStr) {
+async function fillPokemonSearch(pokemonSearchStr) {
     pokemonSearch = [];
 
     for (let j = 0; j < pokemonCache.length; j++) {
@@ -209,6 +217,8 @@ function fillPokemonSearch(pokemonSearchStr) {
         }
     }
     console.log(pokemonSearch);
+    /* document.getElementById('pokemon_overview').innerHTML = '';
+    console.log(document.getElementById('pokemon_overview').innerHTML); */
 }
 
 
@@ -243,7 +253,7 @@ function checkIfBottomOfWindowIsReached() {
     let aktuelleHoehe = window.innerHeight;/*  || document.documentElement.clientHeight || document.body.clientHeight */
 
     // Überprüfen, ob der untere Bildschirmrand erreicht wurde (mit einer Toleranz von 50 Pixeln)
-    if (gesamteDokumentHoehe - (scrollPositionVonOben + aktuelleHoehe) < 50) {
+    if (gesamteDokumentHoehe - (scrollPositionVonOben + aktuelleHoehe) < 300) {
         bottomOfWindowIsReached();
     }
 }
