@@ -38,7 +38,7 @@
       <div class="row" id="pokemon_overview"></div>
     </div>
   </div>
-
+  <!-- container to show pokemon detail -->
   <div
     id="show_pokemon_detail"
     onclick="toggleVisibility()"
@@ -48,6 +48,18 @@
       id="pokemon_detail"
       onclick="doNotToggleVisibility(event)"
       class="card position-fixed top-50 start-50 translate-middle border-grey border-bottom rounded-bottom-4 border-top rounded-top-4 col-12 col-md-6 col-xl-4"><!--  -->
+    </div> 
+  </div>
+  <!-- container to show information if search retun no hit -->
+  <div
+    id="show_pokemon_no_hit"
+    onclick="toggleVisibility()"
+    class="conatiner-fluid position-fixed vh-100 d-flex justify-content-center align-items-center top-0 start-0 bottom-0 end-0 invisible"
+    style="background-color: rgba(0, 0, 0, 0.1);">
+    <div
+      id="pokemon_no hit"
+      onclick="doNotToggleVisibility(event)"
+      class="card position-fixed top-50 start-50 translate-middle border-grey border-bottom rounded-bottom-4 border-top rounded-top-4 col-12 col-md-6 col-xl-4">
     </div> 
   </div>
 
