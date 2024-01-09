@@ -6,7 +6,7 @@ function renderPokemonInfoHTML(color) {
         <h5 class="card-text text-capitalize">${currentPokemon['types'][0]['type']['name']}</h5>
         </div>
         <div>
-            <h5 class="pointer" onclick="toggleVisibility()">close</h5>
+            <h5 class="pointer" onclick="toggleVisibility('show_pokemon_detail')">close</h5>
         </div>
      </div>
      <div class="position-fixed w-100 d-flex justify-content-center" style="top: 48px;"><!-- style="background-color: rgb(83, 245, 191);" -->

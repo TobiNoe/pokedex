@@ -113,7 +113,7 @@ async function showPokemonDetail(pokemonName) {
     currentPokemon = await loadPokemon(pokemonName);
     await loadSpecies(pokemonName);
     renderPokemonInfo();
-    toggleVisibility();
+    toggleVisibility('show_pokemon_detail');
 }
 
 
@@ -121,6 +121,13 @@ function renderPokemonInfo() {
     let color = getColor(currentPokemon['types'][0]['type']['name']);
     document.getElementById('pokemon_detail').innerHTML = renderPokemonInfoHTML(color);
     renderPokemonValues('pokemon_selected_infos', renderPokemonAboutHTML());
+}
+
+
+function renderSearchNoHit() {
+    document.getElementById('pokemon_no hit').innerHTML = /* html */`
+    <p>no pokemon found!</p>
+    `;
 }
 
 
@@ -201,8 +208,8 @@ function renderPokemonMoves() {
     }
 }
 
-function toggleVisibility() {
-    document.getElementById('show_pokemon_detail').classList.toggle('invisible');
+function toggleVisibility(id) {
+    document.getElementById(id).classList.toggle('invisible');/* 'show_pokemon_detail' */
 }
 
 
