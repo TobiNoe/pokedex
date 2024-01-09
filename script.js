@@ -72,7 +72,8 @@ function switchRenderOverview() {
         pokemonPreviewEnd = pokemonRange;
         readInputField();
         document.getElementById('pokemon_overview').innerHTML = '';
-        renderPokemonOverview(pokemonSearch);
+        /* renderPokemonOverview(pokemonSearch); */
+        checkIfSearchIsEmpty()
     } else {
         pokemonRange = 20;
         pokemonPreviewEnd = pokemonRange;
@@ -124,10 +125,27 @@ function renderPokemonInfo() {
 }
 
 
+function checkIfSearchIsEmpty() {
+    if (pokemonSearch.length == 0) {
+        renderSearchNoHit();
+        toggleVisibility('show_pokemon_no_hit');
+    } else {
+        renderPokemonOverview(pokemonSearch);
+    }
+}
+
+
 function renderSearchNoHit() {
     document.getElementById('pokemon_no hit').innerHTML = /* html */`
     <p>no pokemon found!</p>
     `;
+}
+
+
+function closeSearchNoHot() {
+    toggleVisibility('show_pokemon_no_hit');
+    document.getElementById('input_search').value = '';
+    switchRenderOverview();
 }
 
 
@@ -168,8 +186,8 @@ function maxValue() {
 
     for (let i = 0; i < currentPokemon['stats'].length; i++) {
         if (currentPokemon['stats'][i]['base_stat'] > maxValueStats) {
-            maxValueStats = currentPokemon['stats'][i]['base_stat']; 
-        }        
+            maxValueStats = currentPokemon['stats'][i]['base_stat'];
+        }
     }
     console.log(maxValueStats);
     return maxValueStats;
