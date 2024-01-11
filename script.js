@@ -21,7 +21,6 @@ async function init() {
 function fillInputField() {
     pokemonPreviewEnd = 1;
     clearTimeout(timeout);
-    console.log(timeout);
     timeout = setTimeout(switchRenderOverview, 500);
 }
 
@@ -52,7 +51,7 @@ async function loadPokemonList() {
     }
 }
 
-
+/* Function verkürzen!!! */
 function switchRenderOverview() {
     if (document.getElementById('input_search').value != "") {
         pokemonRange = 20;
@@ -217,7 +216,6 @@ function getColor(typeOfPokemon) {
 
 async function readInputField() {
     pokemonSearchStr = document.getElementById('input_search').value.toLowerCase();
-    console.log(pokemonSearchStr);
     await fillPokemonSearch(pokemonSearchStr);
     pokemonSearchStr = [];
     pokemonPreview = pokemonSearch.length;
@@ -243,9 +241,7 @@ async function fillPokemonSearch(pokemonSearchStr) {
 // Funktion, die aufgerufen wird, wenn das Ende erreicht wurde
 async function bottomOfWindowIsReached() {
     renderOverview = true;
-    /* console.log("Unterer Bildschirmrand erreicht!"); */
     pokemonPreviewEnd += 20;
-    /* console.log(pokemonPreviewEnd); */
     await renderPokemonOverview(pokemonRender);
     renderOverview = false;
     // Hier kannst du den Code für deine gewünschte Aktion einfügen
