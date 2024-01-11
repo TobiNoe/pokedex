@@ -314,3 +314,5 @@ function checkIfBottomOfWindowIsReached() {
 
 // Eventlistener für das Scroll-Event hinzufügen
 window.addEventListener("scroll", checkIfBottomOfWindowIsReached);
+document.getElementById('input_search').addEventListener('search', switchRenderOverview);
+

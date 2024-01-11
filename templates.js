@@ -22,9 +22,9 @@ function renderPokemonInfoHTML(color) {
                 <li class="nav-item">
                 <a id="link_stats" class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonStatsHTML('${color}', percentOfMaxValue(), maxValue()), 'link_stats')">Base Stats</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                 <a class="nav-link text-dark pointer" onclick="renderPokemonEvolution()">Evolution</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                 <a id="link_moves" class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonMovesContainerHTML(), 'link_moves')">Moves</a>
                 </li>
