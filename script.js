@@ -7,7 +7,7 @@ let pokemonSearch = [];
 let pokemonRender = [];
 let pokemonRange;
 let pokemonPreviewEnd;
-let pokemonPreview = 500;
+let pokemonPreview = 900;
 let renderOverview = false;
 let pokemonSearchStr = '';
 let timeout;
@@ -22,7 +22,7 @@ function fillInputField() {
     pokemonPreviewEnd = 1;
     clearTimeout(timeout);
     console.log(timeout);
-    timeout = setTimeout(switchRenderOverview, 1000);
+    timeout = setTimeout(switchRenderOverview, 500);
 }
 
 
@@ -49,21 +49,8 @@ async function loadPokemonList() {
     for (let y = 0; y < pokemonList['results'].length; y++) {
         const pokemonName = pokemonList['results'][y]['name'];
         pokemonCache.push(pokemonName);
-        /*  const pokemonID = y + 1;
-         cachePokemons(pokemonName, pokemonID); */
     }
 }
-
-
-/* function cachePokemons(pokemonName, pokemonID) {
-
-    let pokemonDataset = {
-        name: pokemonName,
-        id: pokemonID
-    };
-
-    pokemonCache.push(pokemonDataset);
-} */
 
 
 function switchRenderOverview() {
@@ -96,20 +83,6 @@ async function renderPokemonOverview(renderDatabase) {
 }
 
 
-/* async function renderPokemonOverviewSearch() {
-    pokemonRange = pokemonSearch.length;
-    pokemonPreviewEnd = pokemonRange;
-    
-    for (let i = pokemonPreviewEnd - pokemonRange; i < pokemonPreviewEnd && i < pokemonPreview; i++) {
-        const pokemonName = pokemonSearch[i];
-        /* console.log(pokemonCache[i], i, pokemonPreviewEnd, pokemonPreview, i < pokemonPreviewEnd && i < pokemonPreview); 
-        loadedPokemon = await loadPokemon(pokemonName);/* pokemonID 
-        let color = getColor(loadedPokemon['types'][0]['type']['name']);
-        renderPokemonOverviewCard(pokemonName, loadedPokemon['sprites']['other']['home']['front_default'], color, loadedPokemon['types'][0]['type']['name']);
-    }
-} */
-
-
 async function showPokemonDetail(pokemonName) {
     currentPokemon = await loadPokemon(pokemonName);
     await loadSpecies(pokemonName);
@@ -136,17 +109,18 @@ function checkIfNoSearchResult() {
 
 
 function renderSearchNoHit() {
-    document.getElementById('pokemon_no hit').innerHTML = /* html */`
-    <p>no pokemon found!</p>
-    `;
+    document.getElementById('input_search').blur();
+    document.getElementById('pokemon_no hit').innerHTML = renderSearchNoHitHTML();
 }
 
 
 function closeSearchNoHot() {
     toggleVisibility('show_pokemon_no_hit');
+    document.getElementById('input_search').focus();
     document.getElementById('input_search').value = '';
     switchRenderOverview();
 }
+
 
 
 function renderPokemonOverviewCard(pokemonName, imgURL, pokemonID, color, pokemonType) {
@@ -166,7 +140,7 @@ function renderPokemonValues(ID, returnHTML, IDLink) {
             renderPokemonMoves();
             break;
         default:
-            console.log("No value found");
+            break;
     }
 }
 
@@ -198,7 +172,6 @@ function maxValue() {
             maxValueStats = currentPokemon['stats'][i]['base_stat'];
         }
     }
-    console.log(maxValueStats);
     return maxValueStats;
 }
 
@@ -210,16 +183,7 @@ function percentOfMaxValue() {
         percent = currentPokemon['stats'][i]['base_stat'] / maxValueBase * 100
         percentStats.push(percent);
     }
-    console.log(percentStats);
     return percentStats
-}
-
-
-function renderPokemonEvolution() {
-    document.getElementById('pokemon_selected_infos').innerHTML = /* html */`
-    <div class="w-40">test</div>
-    <div class="w-60">test</div>
-    `;
 }
 
 
@@ -235,8 +199,9 @@ function renderPokemonMoves() {
     }
 }
 
+
 function toggleVisibility(id) {
-    document.getElementById(id).classList.toggle('invisible');/* 'show_pokemon_detail' */
+    document.getElementById(id).classList.toggle('invisible');
 }
 
 
@@ -256,7 +221,6 @@ async function readInputField() {
     await fillPokemonSearch(pokemonSearchStr);
     pokemonSearchStr = [];
     pokemonPreview = pokemonSearch.length;
-    /* renderPokemonOverview(pokemonSearch); */
 }
 
 
@@ -270,9 +234,6 @@ async function fillPokemonSearch(pokemonSearchStr) {
             pokemonSearch.push(pokemon);
         }
     }
-    console.log(pokemonSearch);
-    /* document.getElementById('pokemon_overview').innerHTML = '';
-    console.log(document.getElementById('pokemon_overview').innerHTML); */
 }
 
 
@@ -315,4 +276,3 @@ function checkIfBottomOfWindowIsReached() {
 // Eventlistener für das Scroll-Event hinzufügen
 window.addEventListener("scroll", checkIfBottomOfWindowIsReached);
 document.getElementById('input_search').addEventListener('search', switchRenderOverview);
-

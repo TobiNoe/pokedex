@@ -36,6 +36,29 @@ function renderPokemonInfoHTML(color) {
 }
 
 
+function renderSearchNoHitHTML() {
+    return /* html */`
+    <div class="card-body d-flex justify-content-between border-top rounded-top-4" style="background-color: #EE8130; color: white; height: 300px;">
+        <div>
+        <h3 class="text-capitalize">Pokemon</h3>
+        <h5 class="card-text text-capitalize">- not found -</h5>
+        </div>
+        <div>
+            <h5 class="pointer" onclick="closeSearchNoHot()">close</h5>
+        </div>
+     </div>
+     <div class="position-fixed w-100 d-flex justify-content-center" style="top: 48px;"><!-- style="background-color: rgb(83, 245, 191);" -->
+        <img src="./img/pokeball.png" class="img-detail" alt="..."><!-- card-img-top -->
+    </div>
+    <div class="card-body border-top border-bottom rounded-bottom-4 rounded-top-4 mt-n bg-white">
+        <div class="ms-4 me-4"  style="margin-top: 32px;">
+            <div id="pokemon_selected_infos" class="d-flex align-items-center overflow-auto" style="height: 100px;"></div><!--  style="height: 400px;" -->
+        </div>
+    </div>
+  `
+}
+
+
 function renderPokemonOverviewCardHTML(pokemonName, imgURL, color, pokemonType) {
     return /*html*/`
         <div 
@@ -83,28 +106,6 @@ function renderPokemonAboutHTML() {
 }
 
 
-/* function renderPokemonAboutHTML() {
-    return /* html `
-        <div class="w-40">
-            <p class="">Base Happiness</p>
-            <p class="">Height</p>       
-            <p class="">Weight</p>       
-            <p>Abilities</p>      
-            <p class="">Egg Groups</p>   
-            
-        </div>
-        <div class="w-60">
-            <p><b>${currentSpecies['base_happiness']}</b></p>
-            <p><b>${currentPokemon['height']}</b></p>
-            <p><b>${currentPokemon['weight']}</b></p>
-            <p class="text-capitalize"><b id="pokemon_selected_abilities"></b></p>
-            <p class="text-capitalize"><b>${currentSpecies['egg_groups'][0]['name']}</b></p>
-            
-        </div>
-    `;
-} */
-
-
 function renderPokemonStatsHTML(color, percentStats, maxValueStats) {
     return /* html */`
         <div class="w-100">
@@ -147,35 +148,6 @@ function renderPokemonStatsHTML(color, percentStats, maxValueStats) {
         </div> 
     `;
 }
-
-
-/* function renderPokemonStatsHTML() {
-    return /* html `
-        <div class="w-40">
-            <p>HP</p>
-            <p>Attack</p>
-            <p>Defense</p>
-            <p>Special Attack</p>
-            <p>Special Defense</p>
-            <p>Speed</p> 
-        </div>
-        <div class="w-60">
-            <p><b>${currentPokemon['stats'][0]['base_stat']}</b></p>
-            
-            <p><b>${currentPokemon['stats'][1]['base_stat']}</b></p>
-            
-            <p><b>${currentPokemon['stats'][2]['base_stat']}</b></p>
-            
-            <p><b>${currentPokemon['stats'][3]['base_stat']}</b></p>
-            
-            <p><b>${currentPokemon['stats'][4]['base_stat']}</b></p>
-            
-            <p><b>${currentPokemon['stats'][5]['base_stat']}</b></p>
-                  
-        </div>
-        
-    `;
-} */
 
 
 function renderPokemonMovesContainerHTML() {
