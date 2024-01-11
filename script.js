@@ -121,7 +121,7 @@ async function showPokemonDetail(pokemonName) {
 function renderPokemonInfo() {
     let color = getColor(currentPokemon['types'][0]['type']['name']);
     document.getElementById('pokemon_detail').innerHTML = renderPokemonInfoHTML(color);
-    renderPokemonValues('pokemon_selected_infos', renderPokemonAboutHTML());
+    renderPokemonValues('pokemon_selected_infos', renderPokemonAboutHTML(), 'link_about');
 }
 
 
@@ -154,7 +154,8 @@ function renderPokemonOverviewCard(pokemonName, imgURL, pokemonID, color, pokemo
 }
 
 
-function renderPokemonValues(ID, returnHTML) {
+function renderPokemonValues(ID, returnHTML, IDLink) {
+    linkActivetoggle(IDLink);
     document.getElementById(ID).innerHTML = returnHTML;
 
     switch (returnHTML) {
@@ -178,6 +179,14 @@ function renderPokemonAbilities() {
         const ability = currentPokemon['abilities'][i]['ability']['name'];
         abilitiyID.innerHTML += /* html */`${ability} / `
     }
+}
+
+
+function linkActivetoggle(IDLink) {
+    document.getElementById('link_about').classList.remove('active');
+    document.getElementById('link_stats').classList.remove('active');
+    document.getElementById('link_moves').classList.remove('active');
+    document.getElementById(IDLink).classList.add('active');
 }
 
 

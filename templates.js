@@ -16,17 +16,17 @@ function renderPokemonInfoHTML(color) {
         <div class="ms-4 me-4"  style="margin-top: 32px;">
             <ul class="nav nav-underline justify-content-between mb-4">
                 <li class="nav-item">
-                <a class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonAboutHTML())">About</a>
+                <a id="link_about" class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonAboutHTML(), 'link_about')">About</a>
                 <!-- class="active border-primary " aria-current="page" -->
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonStatsHTML('${color}', percentOfMaxValue(), maxValue()))">Base Stats</a>
+                <a id="link_stats" class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonStatsHTML('${color}', percentOfMaxValue(), maxValue()), 'link_stats')">Base Stats</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link text-dark pointer" onclick="renderPokemonEvolution()">Evolution</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonMovesContainerHTML())">Moves</a>
+                <a id="link_moves" class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonMovesContainerHTML(), 'link_moves')">Moves</a>
                 </li>
             </ul>
             <div id="pokemon_selected_infos" class="d-flex align-items-center overflow-auto" style="height: 300px;"></div><!--  style="height: 400px;" -->
