@@ -73,7 +73,7 @@ function switchRenderOverview() {
         readInputField();
         document.getElementById('pokemon_overview').innerHTML = '';
         /* renderPokemonOverview(pokemonSearch); */
-        checkIfSearchIsEmpty()
+        checkIfNoSearchResult();
     } else {
         pokemonRange = 20;
         pokemonPreviewEnd = pokemonRange;
@@ -125,7 +125,7 @@ function renderPokemonInfo() {
 }
 
 
-function checkIfSearchIsEmpty() {
+function checkIfNoSearchResult() {
     if (pokemonSearch.length == 0) {
         renderSearchNoHit();
         toggleVisibility('show_pokemon_no_hit');
