@@ -18,7 +18,7 @@
 
 <body onload="init()">
   <div class="container-fluid">
-    <div class="container mb-4"><!-- sticky-top -->
+    <div class="container mb-4 sticky-top"><!-- sticky-top -->
       <nav class="navbar navbar-expand-md bg-body-tertiary d-flex ps-2 rounded-3">
         <a class="navbar-brand" href="#">Pokedex</a>
         <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -40,7 +40,7 @@
   <div
     id="show_pokemon_detail"
     onclick="toggleVisibility('show_pokemon_detail')"
-    class="conatiner-fluid position-fixed vh-100 d-flex justify-content-center align-items-center top-0 start-0 bottom-0 end-0 invisible"
+    class="conatiner-fluid position-fixed vh-100 d-flex justify-content-center align-items-center top-0 start-0 bottom-0 end-0 invisible z-1200"
     style="background-color: rgba(0, 0, 0, 0.1);">
     <div
       id="pokemon_detail"

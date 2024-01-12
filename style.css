@@ -31,6 +31,10 @@
     height: 280px;
 }
 
+.z-1200 {
+    z-index: 1200;
+}
+
 @media (max-width: 450px) {
 
     .w-40 {
