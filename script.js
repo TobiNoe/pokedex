@@ -232,40 +232,30 @@ async function fillPokemonSearch(pokemonSearchStr) {
 }
 
 
-/* Testfunktion zum ermitteln des unteren Bildschirmrandes */
-
-
-// Funktion, die aufgerufen wird, wenn das Ende erreicht wurde
 async function bottomOfWindowIsReached() {
     renderOverview = true;
     pokemonPreviewEnd += 20;
     await renderPokemonOverview(pokemonRender);
     renderOverview = false;
-    // Hier kannst du den Code für deine gewünschte Aktion einfügen
 }
 
-// Funktion zum Überprüfen, ob der untere Bildschirmrand erreicht wurde
+
+/* Funktion mit Chat-GPT erstellt und gekürzt */
 function checkIfBottomOfWindowIsReached() {
-    // Wenn die Verarbeitung im Gange ist, beende die Funktion frühzeitig
+
     if (renderOverview) {
         return;
     }
 
-    // Aktuelle Scroll-Position von oben
-    let scrollPositionVonOben = window.scrollY;/*  || window.pageYOffset || document.documentElement.scrollTop */
-
-    // Gesamte Höhe des gerenderten Inhalts im Dokument
+    let scrollPositionVonOben = window.scrollY;
     let gesamteDokumentHoehe = document.documentElement.scrollHeight;
-
-    // Aktuelle Bildschirmhöhe
-    let aktuelleHoehe = window.innerHeight;/*  || document.documentElement.clientHeight || document.body.clientHeight */
-
-    // Überprüfen, ob der untere Bildschirmrand erreicht wurde (mit einer Toleranz von 50 Pixeln)
+    let aktuelleHoehe = window.innerHeight;
+    // Überprüfen, ob der untere Bildschirmrand erreicht wurde (mit einer Toleranz von 300 Pixeln)
     if (gesamteDokumentHoehe - (scrollPositionVonOben + aktuelleHoehe) < 300) {
         bottomOfWindowIsReached();
     }
 }
 
-// Eventlistener für das Scroll-Event hinzufügen
+
 window.addEventListener("scroll", checkIfBottomOfWindowIsReached);
 document.getElementById('input_search').addEventListener('search', switchRenderOverview);
