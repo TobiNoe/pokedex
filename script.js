@@ -7,7 +7,7 @@ let pokemonSearch = [];
 let pokemonRender = [];
 let pokemonRange;
 let pokemonPreviewEnd;
-let pokemonPreview = 900;
+let pokemonPreview = 500;
 let renderOverview = false;
 let pokemonSearchStr = '';
 let timeout;
@@ -61,7 +61,7 @@ function switchRenderOverview() {
         readInputField();
         checkIfNoSearchResult();
     } else {
-        pokemonPreview = 900;
+        pokemonPreview = 500;
         renderPokemonOverview(pokemonCache);
     }
 }
