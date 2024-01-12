@@ -35,16 +35,36 @@
     z-index: 1200;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #d3d2d2;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #EE8130;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #ee6c30;
+}
+
 @media (max-width: 450px) {
 
     .w-40 {
         width: 50%;
     }
-    
+
     .w-60 {
         width: 50%;
     }
-    
+
 }
 
 @media (max-width: 400px) {
@@ -52,5 +72,5 @@
     p {
         font-size: 14px;
     }
-    
+
 }
