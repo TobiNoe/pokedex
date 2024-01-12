@@ -28,7 +28,7 @@ function fillInputField() {
 async function loadPokemon(pokemonName) {
     let url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
     let response = await fetch(url);
-    let pokemon = await response.json();/* currentPokemon */
+    let pokemon = await response.json();
     return pokemon;
 }
 
@@ -41,7 +41,7 @@ async function loadSpecies(pokemonName) {
 
 
 async function loadPokemonList() {
-    let url = `https://pokeapi.co/api/v2/pokemon?limit=${pokemonPreview}&offset=0.`; //limit from 10000 to 20 sets!!!
+    let url = `https://pokeapi.co/api/v2/pokemon?limit=${pokemonPreview}&offset=0.`;
     let response2 = await fetch(url);
     pokemonList = await response2.json();
 
@@ -72,7 +72,7 @@ async function renderPokemonOverview(renderDatabase) {
 
     for (let i = pokemonPreviewEnd - pokemonRange; i < pokemonPreviewEnd && i < pokemonPreview; i++) {
         const pokemonName = pokemonRender[i];
-        loadedPokemon = await loadPokemon(pokemonName);/* pokemonID */
+        loadedPokemon = await loadPokemon(pokemonName);
         let color = getColor(loadedPokemon['types'][0]['type']['name']);
         renderPokemonOverviewCard(pokemonName, loadedPokemon['sprites']['other']['home']['front_default'], color, loadedPokemon['types'][0]['type']['name']);
     }
@@ -185,7 +185,7 @@ function percentOfMaxValue() {
 
 function renderPokemonMoves() {
     let color = getColor(currentPokemon['types'][0]['type']['name']);
-    let moveID = document.getElementById('pokemon_selected_moves')
+    let moveID = document.getElementById('pokemon_selected_moves');
     moveID.innerHTML = '';
 
 
