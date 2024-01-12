@@ -51,20 +51,17 @@ async function loadPokemonList() {
     }
 }
 
-/* Function verkürzen!!! */
+
 function switchRenderOverview() {
+    pokemonRange = 20;
+    pokemonPreviewEnd = pokemonRange;
+    document.getElementById('pokemon_overview').innerHTML = '';
+
     if (document.getElementById('input_search').value != "") {
-        pokemonRange = 20;
-        pokemonPreviewEnd = pokemonRange;
         readInputField();
-        document.getElementById('pokemon_overview').innerHTML = '';
-        /* renderPokemonOverview(pokemonSearch); */
         checkIfNoSearchResult();
     } else {
-        pokemonRange = 20;
-        pokemonPreviewEnd = pokemonRange;
-        pokemonPreview = 500;
-        document.getElementById('pokemon_overview').innerHTML = '';
+        pokemonPreview = 900;
         renderPokemonOverview(pokemonCache);
     }
 }
