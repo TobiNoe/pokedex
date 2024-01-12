@@ -9,27 +9,23 @@ function renderPokemonInfoHTML(color) {
             <h5 class="pointer" onclick="toggleVisibility('show_pokemon_detail')">close</h5>
         </div>
      </div>
-     <div class="position-fixed w-100 d-flex justify-content-center" style="top: 48px;"><!-- style="background-color: rgb(83, 245, 191);" -->
-        <img src="${currentPokemon['sprites']['other']['home']['front_default']}" class="img-detail" alt="..."><!-- card-img-top -->
+     <div class="position-fixed w-100 d-flex justify-content-center" style="top: 48px;">
+        <img src="${currentPokemon['sprites']['other']['home']['front_default']}" class="img-detail" alt="...">
     </div>
     <div class="card-body border-top border-bottom rounded-bottom-4 rounded-top-4 mt-n bg-white">
         <div class="ms-4 me-4"  style="margin-top: 32px;">
             <ul class="nav nav-underline justify-content-between mb-4">
                 <li class="nav-item">
                 <a id="link_about" class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonAboutHTML(), 'link_about')">About</a>
-                <!-- class="active border-primary " aria-current="page" -->
                 </li>
                 <li class="nav-item">
                 <a id="link_stats" class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonStatsHTML('${color}', percentOfMaxValue(), maxValue()), 'link_stats')">Base Stats</a>
                 </li>
-                <!-- <li class="nav-item">
-                <a class="nav-link text-dark pointer" onclick="renderPokemonEvolution()">Evolution</a>
-                </li> -->
                 <li class="nav-item">
                 <a id="link_moves" class="nav-link text-dark pointer" onclick="renderPokemonValues('pokemon_selected_infos', renderPokemonMovesContainerHTML(), 'link_moves')">Moves</a>
                 </li>
             </ul>
-            <div id="pokemon_selected_infos" class="d-flex align-items-center overflow-auto" style="height: 300px;"></div><!--  style="height: 400px;" -->
+            <div id="pokemon_selected_infos" class="d-flex align-items-center overflow-auto" style="height: 300px;"></div>
         </div>
     </div>
   `
@@ -47,12 +43,12 @@ function renderSearchNoHitHTML() {
             <h5 class="pointer" onclick="closeSearchNoHot()">close</h5>
         </div>
      </div>
-     <div class="position-fixed w-100 d-flex justify-content-center" style="top: 48px;"><!-- style="background-color: rgb(83, 245, 191);" -->
-        <img src="./img/pokeball.png" class="img-detail" alt="..."><!-- card-img-top -->
+     <div class="position-fixed w-100 d-flex justify-content-center" style="top: 48px;">
+        <img src="./img/pokeball.png" class="img-detail" alt="...">
     </div>
     <div class="card-body border-top border-bottom rounded-bottom-4 rounded-top-4 mt-n bg-white">
         <div class="ms-4 me-4"  style="margin-top: 32px;">
-            <div id="pokemon_selected_infos" class="d-flex align-items-center overflow-auto" style="height: 100px;"></div><!--  style="height: 400px;" -->
+            <div id="pokemon_selected_infos" class="d-flex align-items-center overflow-auto" style="height: 100px;"></div>
         </div>
     </div>
   `
@@ -62,9 +58,9 @@ function renderSearchNoHitHTML() {
 function renderPokemonOverviewCardHTML(pokemonName, imgURL, color, pokemonType) {
     return /*html*/`
         <div 
-        class="col-12 col-sm-6 col-lg-4 col-xl-3 d-flex flex-column mb-4"><!-- d-flex justify-content-center justify-content-sm-between -->
+        class="col-12 col-sm-6 col-lg-4 col-xl-3 d-flex flex-column mb-4">
             <div class="rounded  pointer" style="max-width: 100%; background-color: ${color}; color: white;" onclick="showPokemonDetail('${pokemonName}')">
-                <div class="ps-2 pt-2"><!-- d-flex justify-content-between align-items-center -->
+                <div class="ps-2 pt-2">
                     <h3 class="card-title text-capitalize">${pokemonName}</h3>
                     <h5 class="card-subtitle mb-2 text-capitalize">${pokemonType}</h5>
                 </div>
