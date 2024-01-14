@@ -67,6 +67,16 @@ function switchRenderOverview() {
 }
 
 
+function renderPokemonTypes(id, loadedCurrentPokemon) {
+    document.getElementById(id).innerHTML = '';
+
+    for (let i = 0; i < loadedCurrentPokemon['types'].length; i++) {
+        const pokemonCurrentType = loadedCurrentPokemon['types'][i]['type']['name'];
+        document.getElementById(id).innerHTML += `${pokemonCurrentType} `;
+    }
+}
+
+
 async function renderPokemonOverview(renderDatabase) {
     pokemonRender = renderDatabase;
 
@@ -75,6 +85,7 @@ async function renderPokemonOverview(renderDatabase) {
         loadedPokemon = await loadPokemon(pokemonName);
         let color = getColor(loadedPokemon['types'][0]['type']['name']);
         renderPokemonOverviewCard(pokemonName, loadedPokemon['sprites']['other']['home']['front_default'], color, loadedPokemon['types'][0]['type']['name']);
+        renderPokemonTypes('pokemon_types_' + pokemonName, loadedPokemon);
     }
 }
 
@@ -90,6 +101,7 @@ async function showPokemonDetail(pokemonName) {
 function renderPokemonInfo() {
     let color = getColor(currentPokemon['types'][0]['type']['name']);
     document.getElementById('pokemon_detail').innerHTML = renderPokemonInfoHTML(color);
+    renderPokemonTypes('pokemon_current_types', currentPokemon);
     renderPokemonValues('pokemon_selected_infos', renderPokemonAboutHTML(), 'link_about');
 }
 
