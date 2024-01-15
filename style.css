@@ -1,7 +1,11 @@
-  /* Firefox */
+:root {
+    --scrollbar-color: rgba(0, 0, 0, 0.3);
+  }
+ 
+ /* Firefox */
   * {
     scrollbar-width: thin;
-    scrollbar-color: #f85235 #e1ee2f;
+    scrollbar-color: var(--scrollbar-color) white;
   }
 
   /* Chrome, Edge, and Safari */
@@ -15,13 +19,9 @@
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: #EE8130;
+    background-color: var(--scrollbar-color);
     border-radius: 10px;
-    border: 3px solid #EE8130;
-  }
-
-  *::-webkit-scrollbar-thumb:hover {
-    background-color: #FE4432;
+    border: 3px solid white;
   }
 
 .mt-n {
